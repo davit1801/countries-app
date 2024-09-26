@@ -1,0 +1,20 @@
+.country_card {
+  margin: 2rem 0;
+  padding: 2rem;
+  display: flex;
+  gap: 3rem;
+  font-size: 1.8rem;
+  border: 1px solid #fff;
+  border-radius: 1rem;
+}
+
+.country_img {
+  width: 50%;
+  height: 200px;
+}
+
+.country_info {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}

@@ -1,0 +1,10 @@
+.nav_item {
+  padding: 2rem;
+  color: #000;
+  font-size: 16px;
+  transition: color 0.2s ease-in;
+}
+
+.nav_item:hover {
+  color: rgb(38, 212, 38);
+}
