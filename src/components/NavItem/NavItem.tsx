@@ -1,4 +1,4 @@
-import styles from './navItem.module.css';
+import styles from '@/components/NavItem/navItem.module.css';
 
 type Props = {
   name: string;

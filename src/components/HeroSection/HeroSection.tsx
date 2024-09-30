@@ -1,12 +1,14 @@
-import styles from './heroSection.module.css'
+// import styles from '@/heroSection.module.css'
+import styles from '@/components/HeroSection/heroSection.module.css';
+import heroImg from '@/assets/images/hero-img.webp';
 
 const HeroSection = () => {
   return (
     <section className={styles.hero_section}>
-    <img src="../public/hero-img.webp" className={styles.hero_img} alt="" />
-    <h1 className={styles.main_heading}>THE ONLY WAY TO TRAVEL</h1>
-  </section>
-  )
-}
+      <img src={heroImg} className={styles.hero_img} alt="" />
+      <h1 className={styles.main_heading}>We Find The Best Tours For You</h1>
+    </section>
+  );
+};
 
-export default HeroSection
+export default HeroSection;

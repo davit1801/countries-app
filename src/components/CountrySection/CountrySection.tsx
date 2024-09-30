@@ -1,14 +1,12 @@
-import styles from './countrySection.module.css'
-import Card from '../Card/Card'
+import styles from '@/components/CountrySection/countrySection.module.css';
+import { PropsWithChildren } from 'react';
 
-const CountrySection = () => {
+const CountrySection: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <section className={styles.country_section}>
-    <div className={styles.countries}>
-      <Card />
-    </div>
-  </section>
-  )
-}
+      <div className={styles.countries}>{children}</div>
+    </section>
+  );
+};
 
-export default CountrySection
+export default CountrySection;

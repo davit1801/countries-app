@@ -1,14 +1,7 @@
-import React from 'react';
-import HeroSection from '../HeroSection/HeroSection';
-import CountrySection from '../CountrySection/CountrySection';
+import React, { PropsWithChildren } from 'react';
 
-const Main: React.FC = () => {
-  return (
-    <main>
-      <HeroSection />
-      <CountrySection />
-    </main>
-  );
+const Main: React.FC<PropsWithChildren> = ({ children }) => {
+  return <main>{children}</main>;
 };
 
 export default Main;

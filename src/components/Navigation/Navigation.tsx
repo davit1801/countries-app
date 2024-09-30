@@ -1,5 +1,6 @@
-import NavItem from '../NavItem/NavItem';
-import styles from './navigation.module.css';
+// import NavItem from '../NavItem/NavItem';
+import NavItem from '@/components/NavItem/NavItem';
+import styles from '@/components/Navigation/navigation.module.css';
 
 const navLinks = ['Home', 'About', 'Contact', 'Services'];
 

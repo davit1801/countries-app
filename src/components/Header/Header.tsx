@@ -1,6 +1,6 @@
-import Button from '../Buttons/ContactButton';
-import Navigation from '../Navigation/Navigation';
-import styles from './header.module.css'
+import Button from '@/components/Buttons/ContactButton';
+import Navigation from '@/components/Navigation/Navigation';
+import styles from '@/components/Header/header.module.css'
 
 const Header:React.FC = () => {
   return (
