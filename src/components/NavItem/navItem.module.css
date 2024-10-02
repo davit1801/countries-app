@@ -8,3 +8,10 @@
 .nav_item:hover {
   color: rgb(38, 212, 38);
 }
+
+.active_nav_item {
+  padding: 2rem;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.2s ease-in;
+}

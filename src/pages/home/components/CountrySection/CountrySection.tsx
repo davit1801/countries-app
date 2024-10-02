@@ -1,4 +1,4 @@
-import styles from '@/components/CountrySection/countrySection.module.css';
+import styles from '@/pages/home/components/CountrySection/countrySection.module.css';
 import { PropsWithChildren } from 'react';
 
 const CountrySection: React.FC<PropsWithChildren> = ({ children }) => {

@@ -1,5 +1,5 @@
 // import styles from '@/heroSection.module.css'
-import styles from '@/components/HeroSection/heroSection.module.css';
+import styles from '@/pages/home/components/HeroSection/heroSection.module.css';
 import heroImg from '@/assets/images/hero-img.webp';
 
 const HeroSection = () => {

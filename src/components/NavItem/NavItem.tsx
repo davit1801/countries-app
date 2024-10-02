@@ -1,15 +1,20 @@
 import styles from '@/components/NavItem/navItem.module.css';
+import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 
 type Props = {
   name: string;
+  path: string;
 };
 
-const NavItem = ({ name }: Props) => {
+const handleActiveNav = ({ isActive }: NavLinkRenderProps) =>
+  isActive ? styles['active_nav_item'] : styles['nav_item'];
+
+const NavItem = ({ name, path }: Props) => {
   return (
     <li>
-      <a href="#" className={styles.nav_item}>
+      <NavLink to={path} className={handleActiveNav}>
         {name}
-      </a>
+      </NavLink>
     </li>
   );
 };
