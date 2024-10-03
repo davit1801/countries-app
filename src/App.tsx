@@ -3,7 +3,9 @@ import '@/App.css';
 import Layout from '@/components/Layout/Layout';
 import AboutView from '@/pages/about/views';
 import ContactPage from '@/pages/contact/views';
-import CountryListView from '@/pages/home/views/list/index';
+import { lazy, Suspense } from 'react';
+
+const LazyCountryListView = lazy(() => import('@/pages/home/views/list/index'));
 
 function App() {
   return (
@@ -11,7 +13,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<CountryListView />} />
+            <Route
+              path="/"
+              element={
+                <Suspense
+                  fallback={
+                    <div>
+                      <h1>Loading ...</h1>
+                    </div>
+                  }
+                >
+                  <LazyCountryListView />
+                </Suspense>
+              }
+            />
             <Route path="about" element={<AboutView />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>

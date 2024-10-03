@@ -1,8 +1,4 @@
-import Card from '@/components/Card/Card';
-import CardInfo from '@/components/Card/CardInfo/CardInfo';
-import CountrySection from '@/pages/home/components/CountrySection/CountrySection';
-import HeroSection from '@/pages/home/components/HeroSection/HeroSection';
-import React from 'react';
+import React, { lazy } from 'react';
 
 const country = {
   name: 'Spain',
@@ -11,15 +7,26 @@ const country = {
   flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg',
 };
 
+const LazyHeroSection = lazy(
+  () => import('@/pages/home/components/HeroSection/HeroSection')
+);
+
+const LazyCountry = lazy(
+  () => import('@/pages/home/components/CountrySection/CountrySection')
+);
+
+const LazyCard = lazy(() => import('@/components/Card/Card'));
+const LazyCardInfo = lazy(() => import('@/components/Card/CardInfo/CardInfo'));
+
 const CountryListView: React.FC = () => {
   return (
     <>
-      <HeroSection />
-      <CountrySection>
-        <Card country={country}>
-          <CardInfo country={country} />
-        </Card>
-      </CountrySection>
+      <LazyHeroSection />
+      <LazyCountry>
+        <LazyCard country={country}>
+          <LazyCardInfo country={country} />
+        </LazyCard>
+      </LazyCountry>
     </>
   );
 };
