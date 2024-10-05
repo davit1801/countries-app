@@ -1,0 +1,11 @@
+.contact_form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 7rem;
+}
+
+.input_names {
+  display: flex;
+  gap: 3rem;
+}

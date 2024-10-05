@@ -1,0 +1,9 @@
+.form_btn {
+  background-color: #181818;
+  padding: 1.5rem 4rem;
+  color: #fff;
+  width: 35%;
+  font-size: 1.6rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
