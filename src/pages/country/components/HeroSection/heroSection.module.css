@@ -4,15 +4,15 @@
 
 .hero_img {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   vertical-align: top;
 }
 
 .main_heading {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, 50%);
   font-size: 4rem;
-  color: #dccccc;
+  color: #2b2828;
 }

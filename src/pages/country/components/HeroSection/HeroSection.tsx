@@ -1,6 +1,7 @@
 // import styles from '@/heroSection.module.css'
-import styles from '@/pages/home/components/HeroSection/heroSection.module.css';
-import heroImg from '@/assets/images/hero-img.webp';
+import styles from './heroSection.module.css';
+// import heroImg from '@/assets/images/hero-img.webp';
+import heroImg from '@/assets/images/travel.jpg'
 
 const HeroSection = () => {
   return (

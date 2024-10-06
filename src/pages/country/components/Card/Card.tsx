@@ -1,4 +1,4 @@
-import styles from '@/components/Card/card.module.css';
+import styles from './card.module.css'
 import { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const Card: React.FC<PropsWithChildren<ComponentProps>> = ({
   children,
 }) => {
   return (
-    <Link to={`/${country.id}`}>
+    <Link to={`country/${country.id}`}>
       <article className={styles.country_card}>
         <img className={styles.country_img} src={country.flag} />
         {children}

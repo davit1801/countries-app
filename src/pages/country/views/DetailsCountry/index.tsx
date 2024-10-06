@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import countriesData from '@/static/dummy-data';
+import CountryDetails from '@/pages/country/components/DetailsCountry/CountryDetails';
 
 const DetailsCountry: React.FC = () => {
   const { id } = useParams();
@@ -15,11 +16,7 @@ const DetailsCountry: React.FC = () => {
   }
   console.log(countryInfo);
 
-  return (
-    <div style={{ textAlign: 'center', fontSize: '2.4rem' }}>
-      DetailsCountry
-    </div>
-  );
+  return <CountryDetails info={countryInfo} />;
 };
 
 export default DetailsCountry;

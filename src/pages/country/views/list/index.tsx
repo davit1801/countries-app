@@ -1,7 +1,7 @@
-import HeroSection from '@/pages/home/components/HeroSection/HeroSection';
-import CountrySection from '@/pages/home/components/CountrySection/CountrySection';
-import Card from '@/components/Card/Card';
-import CardInfo from '@/components/Card/CardInfo/CardInfo';
+import HeroSection from '@/pages/country/components/HeroSection/HeroSection';
+import CountrySection from '@/pages/country/components/CountrySection/CountrySection';
+import Card from '@/pages/country/components/Card/Card';
+import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
 import countriesData from '@/static/dummy-data';
 
 const CountryListView: React.FC = () => {

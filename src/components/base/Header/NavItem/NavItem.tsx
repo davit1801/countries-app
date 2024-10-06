@@ -1,4 +1,4 @@
-import styles from '@/components/NavItem/navItem.module.css';
+import styles from './navItem.module.css';
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 
 type Props = {

@@ -2,11 +2,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '@/App.css';
 import Layout from '@/components/Layout/Layout';
 import AboutView from '@/pages/about/views';
-import ContactPage from '@/pages/contact/views';
 import { lazy, Suspense } from 'react';
-import DetailsCountry from '@/pages/home/views/DetailsCountry';
+import DetailsCountry from '@/pages/country/views/DetailsCountry';
 
-const LazyCountryListView = lazy(() => import('@/pages/home/views/list/index'));
+const LazyCountryListView = lazy(
+  () => import('@/pages/country/views/list/index')
+);
+const LazyContactView = lazy(() => import('@/pages/contact/views/index'));
 
 function App() {
   return (
@@ -28,9 +30,22 @@ function App() {
                 </Suspense>
               }
             />
-            <Route path="/:id" element={<DetailsCountry />} />
+            <Route path="country/:id" element={<DetailsCountry />} />
             <Route path="about" element={<AboutView />} />
-            <Route path="contact" element={<ContactPage />} />
+            <Route
+              path="contact"
+              element={
+                <Suspense
+                  fallback={
+                    <div>
+                      <h1>Loading ...</h1>
+                    </div>
+                  }
+                >
+                  <LazyContactView />
+                </Suspense>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
