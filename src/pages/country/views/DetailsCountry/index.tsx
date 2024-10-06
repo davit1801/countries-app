@@ -7,16 +7,14 @@ const DetailsCountry: React.FC = () => {
   const { id } = useParams();
 
   const countryInfo = countriesData.find(country => country.id === id);
-  if (!countryInfo) {
-    return (
-      <h1 style={{ textAlign: 'center', fontSize: '2.4rem' }}>
-        Country Not Found!!!
-      </h1>
-    );
-  }
-  console.log(countryInfo);
 
-  return <CountryDetails info={countryInfo} />;
+  return countryInfo ? (
+    <CountryDetails info={countryInfo} />
+  ) : (
+    <h1 style={{ textAlign: 'center', fontSize: '2.4rem' }}>
+      Country Not Found!!!
+    </h1>
+  );
 };
 
 export default DetailsCountry;
