@@ -6,9 +6,7 @@ import FormButton from '@/pages/contact/components/FormButton/FormButton';
 
 const handleSubmit = (event: React.FormEvent<EventTarget>) => {
   event.preventDefault();
-
-  const form = event.target as HTMLFormElement;
-
+  const form = event.currentTarget as HTMLFormElement;
   const formData = {
     firstname: form.firstname.value,
     lastname: form.lastname.value,
@@ -19,10 +17,15 @@ const handleSubmit = (event: React.FormEvent<EventTarget>) => {
   form.reset();
 };
 
+const handleKeyDown = (event: React.KeyboardEvent) => {
+  if (event.key === 'Enter') handleSubmit(event);
+};
+
 const ContactForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
       name="contact-form"
       className={styles.contact_form}
     >

@@ -1,32 +1,22 @@
-import React, { lazy } from 'react';
-
-const country = {
-  name: 'Spain',
-  capital: 'Madrid',
-  population: 47_000_000,
-  flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg',
-};
-
-const LazyHeroSection = lazy(
-  () => import('@/pages/home/components/HeroSection/HeroSection')
-);
-
-const LazyCountry = lazy(
-  () => import('@/pages/home/components/CountrySection/CountrySection')
-);
-
-const LazyCard = lazy(() => import('@/components/Card/Card'));
-const LazyCardInfo = lazy(() => import('@/components/Card/CardInfo/CardInfo'));
+import HeroSection from '@/pages/home/components/HeroSection/HeroSection';
+import CountrySection from '@/pages/home/components/CountrySection/CountrySection';
+import Card from '@/components/Card/Card';
+import CardInfo from '@/components/Card/CardInfo/CardInfo';
+import countriesData from '@/static/dummy-data';
 
 const CountryListView: React.FC = () => {
   return (
     <>
-      <LazyHeroSection />
-      <LazyCountry>
-        <LazyCard country={country}>
-          <LazyCardInfo country={country} />
-        </LazyCard>
-      </LazyCountry>
+      <HeroSection />
+      <CountrySection>
+        {countriesData.map(country => {
+          return (
+            <Card country={country} key={country.id}>
+              <CardInfo country={country} />
+            </Card>
+          );
+        })}
+      </CountrySection>
     </>
   );
 };

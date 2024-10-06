@@ -1,13 +1,13 @@
 import styles from '@/components/Card/card.module.css';
 import { PropsWithChildren } from 'react';
-
-
+import { Link } from 'react-router-dom';
 
 interface Country {
   flag: string;
   name: string;
   capital: string;
   population: number;
+  id: string;
 }
 
 interface ComponentProps {
@@ -19,10 +19,12 @@ const Card: React.FC<PropsWithChildren<ComponentProps>> = ({
   children,
 }) => {
   return (
-    <article className={styles.country_card}>
-      <img className={styles.country_img} src={country.flag} />
-      {children}
-    </article>
+    <Link to={`/${country.id}`}>
+      <article className={styles.country_card}>
+        <img className={styles.country_img} src={country.flag} />
+        {children}
+      </article>
+    </Link>
   );
 };
 
