@@ -17,15 +17,11 @@ const handleSubmit = (event: React.FormEvent<EventTarget>) => {
   form.reset();
 };
 
-const handleKeyDown = (event: React.KeyboardEvent) => {
-  if (event.key === 'Enter') handleSubmit(event);
-};
 
 const ContactForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      onKeyDown={handleKeyDown}
       name="contact-form"
       className={styles.contact_form}
     >

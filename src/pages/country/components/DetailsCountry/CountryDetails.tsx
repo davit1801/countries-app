@@ -13,7 +13,6 @@ interface CountryDetailsProps {
 }
 
 const CountryDetails: React.FC<CountryDetailsProps> = ({ info }) => {
-  console.log(info);
   return (
     <div className={styles.country_container}>
       <div className={styles.country_img}>
@@ -22,7 +21,7 @@ const CountryDetails: React.FC<CountryDetailsProps> = ({ info }) => {
       <div className={styles.country_description}>
         <h3>{info.name}</h3>
         <p>Capital: {info.capital}</p>
-        <p>Population: {(info.population / 1000000)} Million</p>
+        <p>Population: {info.population / 1000000} Million</p>
       </div>
     </div>
   );
