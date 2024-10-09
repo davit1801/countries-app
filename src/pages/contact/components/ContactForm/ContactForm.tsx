@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import styles from '@/pages/contact/components/ContactForm/ContactForm.module.css';
 import Input from '@/pages/contact/components/FormInput/Input';
 import FormTextArea from '@/pages/contact/components/FormTextArea/FormTextArea';
 import FormButton from '@/pages/contact/components/FormButton/FormButton';
 
-const handleSubmit = (event: React.FormEvent<EventTarget>) => {
+const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
-  const form = event.currentTarget as HTMLFormElement;
-  const formData = {
-    firstname: form.firstname.value,
-    lastname: form.lastname.value,
-    email: form.email.value,
-  };
+  const form = event.currentTarget;
 
-  console.log(formData);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const formValuesObj: any = {};
+
+  const formValues = new FormData(event.currentTarget);
+
+  console.log(formValues);
+
+  for (const [key, value] of formValues) {
+    formValuesObj[key] = value;
+  }
+
+  console.log(formValuesObj);
   form.reset();
 };
-
 
 const ContactForm: React.FC = () => {
   return (

@@ -5,6 +5,7 @@ import Card from '@/pages/country/components/Card/Card';
 import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
 import LikeButton from '@/components/Buttons/LikeButton/LikeButton';
 import styles from './index.module.css';
+import SortSelect from '@/pages/country/components/SortSelect/SortSelect';
 
 const CountryListView: React.FC = () => {
   const [countrysData, setCountrysData] = useState([
@@ -34,18 +35,22 @@ const CountryListView: React.FC = () => {
     },
   ]);
 
-
-  // const handleClick = () => {
-  //   setCountrysData(data => [...data.sort((a, b) => b.likes - a.likes)]);
+  // const sortData = (type: string) => {
+  //   setCountrysData(data => [
+  //     ...data.sort((a, b) => {
+  //       if (type === 'increase') return b.likes - a.likes;
+  //       if (type === 'decrease') return a.likes - b.likes;
+  //     }),
+  //   ]);
   // };
 
   const sortData = (type: string) => {
-    setCountrysData(data => [
-      ...data.sort((a, b) => {
+    setCountrysData(
+      [...countrysData].sort((a, b) => {
         if (type === 'increase') return b.likes - a.likes;
         if (type === 'decrease') return a.likes - b.likes;
-      }),
-    ]);
+      })
+    );
   };
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -56,18 +61,7 @@ const CountryListView: React.FC = () => {
     <>
       <HeroSection />
       <CountrySection>
-        <select
-          defaultValue={'default'}
-          onChange={handleSortChange}
-          className={styles.select_input}
-        >
-          <option value="default">Sort by Likes</option>
-          <option value="increase">Encreases by likes</option>
-          <option value="decrease">Decreases by likes</option>
-        </select>
-        {/* <button className={styles.sort_btn} onClick={handleClick}>
-          Sort By Likes
-        </button> */}
+        <SortSelect handleSortChange={handleSortChange} />
         <ul className={styles.countries}>
           {countrysData.map(country => {
             return (

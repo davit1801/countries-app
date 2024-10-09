@@ -2,19 +2,3 @@
   display: flex;
   gap: 3rem;
 }
-
-.sort_btn {
-  padding: 1rem;
-  border-radius: 1.6rem;
-  background-color: rgb(39, 60, 60);
-  color: #fff;
-  cursor: pointer;
-}
-
-.select_input {
-  padding: 1rem;
-  background-color: rgb(39, 60, 60);
-  color: #fff;
-  margin-bottom: 2rem;
-  border-radius: 2rem;
-}
