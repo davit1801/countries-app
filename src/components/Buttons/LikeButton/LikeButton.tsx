@@ -1,19 +1,11 @@
 import React from 'react';
 import icon from '@/assets/images/like-btn.svg';
 import styles from './LikeButton.module.css';
-
-interface Country {
-  flag: string;
-  name: string;
-  capital: string;
-  population: number;
-  id: string;
-  likes: number;
-}
+import { CountryType } from '@/pages/country/views/list';
 
 interface ComponentProps {
-  country: Country;
-  setCountryData: React.Dispatch<React.SetStateAction<Country[]>>;
+  country: CountryType;
+  setCountryData: React.Dispatch<React.SetStateAction<CountryType[]>>;
 }
 
 const LikeButton = ({ country, setCountryData }: ComponentProps) => {
@@ -22,7 +14,7 @@ const LikeButton = ({ country, setCountryData }: ComponentProps) => {
     setCountryData(data =>
       data.map(prevItem =>
         prevItem.id === country.id
-          ? { ...prevItem, likes: prevItem.likes + 1 }
+          ? { ...country, likes: country.likes + 1 }
           : prevItem
       )
     );

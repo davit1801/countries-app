@@ -1,14 +1,23 @@
 import { useState } from 'react';
+import styles from './index.module.css';
 import HeroSection from '@/pages/country/components/HeroSection/HeroSection';
 import CountrySection from '@/pages/country/components/CountrySection/CountrySection';
 import Card from '@/pages/country/components/Card/Card';
 import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
 import LikeButton from '@/components/Buttons/LikeButton/LikeButton';
-import styles from './index.module.css';
 import SortSelect from '@/pages/country/components/SortSelect/SortSelect';
 
+export interface CountryType {
+  id: string;
+  name: string;
+  capital: string;
+  population: number;
+  flag: string;
+  likes: number;
+}
+
 const CountryListView: React.FC = () => {
-  const [countrysData, setCountrysData] = useState([
+  const [countriesData, setCountriesData] = useState<CountryType[]>([
     {
       id: '1',
       name: 'Spain',
@@ -36,10 +45,10 @@ const CountryListView: React.FC = () => {
   ]);
 
   const sortData = (type: string) => {
-    setCountrysData(
-      [...countrysData].sort((a, b) => {
-        if (type === 'increase') return b.likes - a.likes;
-        if (type === 'decrease') return a.likes - b.likes;
+    setCountriesData(
+      [...countriesData].sort((a, b) => {
+        if (type === 'decrease') return b.likes - a.likes;
+        if (type === 'increase') return a.likes - b.likes;
         return 0;
       })
     );
@@ -55,14 +64,14 @@ const CountryListView: React.FC = () => {
       <CountrySection>
         <SortSelect handleSortChange={handleSortChange} />
         <ul className={styles.countries}>
-          {countrysData.map(country => {
+          {countriesData.map(country => {
             return (
               <li key={country.id}>
                 <Card country={country}>
                   <CardInfo country={country} />
                   <LikeButton
                     country={country}
-                    setCountryData={setCountrysData}
+                    setCountryData={setCountriesData}
                   />
                 </Card>
               </li>
