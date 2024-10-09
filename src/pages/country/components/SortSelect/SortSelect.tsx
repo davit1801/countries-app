@@ -7,12 +7,8 @@ type Props = {
 
 const SortSelect = ({ handleSortChange }: Props) => {
   return (
-    <select
-      defaultValue={'default'}
-      onChange={handleSortChange}
-      className={styles.select_input}
-    >
-      <option value="default">Sort by Likes</option>
+    <select onChange={handleSortChange} className={styles.select_input}>
+      <option value="">Sort by Likes</option>
       <option value="increase">Encreases by likes</option>
       <option value="decrease">Decreases by likes</option>
     </select>

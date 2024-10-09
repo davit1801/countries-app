@@ -35,20 +35,12 @@ const CountryListView: React.FC = () => {
     },
   ]);
 
-  // const sortData = (type: string) => {
-  //   setCountrysData(data => [
-  //     ...data.sort((a, b) => {
-  //       if (type === 'increase') return b.likes - a.likes;
-  //       if (type === 'decrease') return a.likes - b.likes;
-  //     }),
-  //   ]);
-  // };
-
   const sortData = (type: string) => {
     setCountrysData(
       [...countrysData].sort((a, b) => {
         if (type === 'increase') return b.likes - a.likes;
         if (type === 'decrease') return a.likes - b.likes;
+        return 0;
       })
     );
   };
