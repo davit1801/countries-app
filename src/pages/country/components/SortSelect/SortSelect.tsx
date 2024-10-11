@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import styles from './SortSelect.module.css';
+import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 
-type Props = {
-  handleSortChange: React.ChangeEventHandler<HTMLSelectElement>;
+type PropsType = {
+  dispatch: Dispatch<countriesReducerAction>;
 };
 
-const SortSelect = ({ handleSortChange }: Props) => {
+const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch({
+      type: 'sort',
+      payload: {
+        sortType: e.target.value,
+      },
+    });
+  };
+
   return (
     <select onChange={handleSortChange} className={styles.select_input}>
       <option value="">Sort by Likes</option>

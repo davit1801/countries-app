@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import icon from '@/assets/images/like-btn.svg';
 import styles from './LikeButton.module.css';
-import { CountryType } from '@/pages/country/views/list';
+import { CountryType } from '@/pages/country/views/list/reducer/state';
+import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 
 interface ComponentProps {
   country: CountryType;
-  setCountryData: React.Dispatch<React.SetStateAction<CountryType[]>>;
+  dispatch: Dispatch<countriesReducerAction>;
 }
 
-const LikeButton = ({ country, setCountryData }: ComponentProps) => {
+const LikeButton: React.FC<ComponentProps> = ({ country, dispatch }) => {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
-    setCountryData(data =>
-      data.map(prevItem =>
-        prevItem.id === country.id
-          ? { ...country, likes: country.likes + 1 }
-          : prevItem
-      )
-    );
+    dispatch({
+      type: 'like',
+      payload: {
+        id: country.id,
+      },
+    });
   };
 
   return (
