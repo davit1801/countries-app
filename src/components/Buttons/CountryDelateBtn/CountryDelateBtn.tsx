@@ -2,6 +2,7 @@ import { countriesReducerAction } from '@/pages/country/views/list/reducer/reduc
 import { CountryType } from '@/pages/country/views/list/reducer/state';
 import React, { Dispatch } from 'react';
 import styles from './CountryDelateBtn.module.css';
+import { MdDelete, MdRestore } from 'react-icons/md';
 
 interface ComponentProps {
   country: CountryType;
@@ -19,11 +20,14 @@ const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
     });
   };
   return (
-    <button
-      className={country.active ? styles.delete_btn : styles.recovery_btn}
-      onClick={handleDeleteCard}
-    >
-      {country.active ? 'Delate Card' : 'Recovery Card'}
+    // <button
+    //   className={country.active ? styles.delete_btn : styles.recovery_btn}
+    //   onClick={handleDeleteCard}
+    // >
+    //   {country.active ? <MdDelete /> : 'Recovery Card'}
+    // </button>
+    <button className={country.active ? styles.delete_btn : styles.recovery_btn} onClick={handleDeleteCard}>
+      {country.active ? <MdDelete /> : <MdRestore />}
     </button>
   );
 };
