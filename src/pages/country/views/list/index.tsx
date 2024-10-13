@@ -11,6 +11,8 @@ import {
   CountryType,
 } from '@/pages/country/views/list/reducer/state';
 import { countriesReducer } from '@/pages/country/views/list/reducer/reducer';
+import CountryCreateForm from '@/pages/country/components/CountryCreateForm/CountryCreateForm';
+import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
 
 const CountryListView: React.FC = () => {
   const [countriesList, dispatch] = useReducer(
@@ -18,11 +20,14 @@ const CountryListView: React.FC = () => {
     countriesInitialState
   );
 
+  console.log(countriesList);
+
   return (
     <>
       <HeroSection />
       <CountrySection>
         <SortSelect dispatch={dispatch} />
+        <CountryCreateForm dispatch={dispatch} countriesList={countriesList} />
         <ul className={styles.countries}>
           {countriesList.map((country: CountryType) => {
             return (
@@ -30,6 +35,7 @@ const CountryListView: React.FC = () => {
                 <Card country={country}>
                   <CardInfo country={country} />
                   <LikeButton country={country} dispatch={dispatch} />
+                  <CountryDelateBtn  country={country} dispatch={dispatch}/>
                 </Card>
               </li>
             );

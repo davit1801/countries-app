@@ -13,13 +13,10 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 
   const formValues = new FormData(event.currentTarget);
 
-  console.log(formValues);
-
   for (const [key, value] of formValues) {
     formValuesObj[key] = value;
   }
 
-  console.log(formValuesObj);
   form.reset();
 };
 

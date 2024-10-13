@@ -6,6 +6,7 @@ export const countriesInitialState = [
     population: 47_000_000,
     flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg',
     likes: 0,
+    active: true,
   },
   {
     id: '2',
@@ -14,6 +15,7 @@ export const countriesInitialState = [
     population: 59_000_000,
     flag: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg',
     likes: 0,
+    active: true,
   },
   {
     id: '3',
@@ -22,6 +24,7 @@ export const countriesInitialState = [
     population: 84_000_000,
     flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/2560px-Flag_of_Germany.svg.png',
     likes: 0,
+    active: true,
   },
 ];
 
@@ -32,4 +35,5 @@ export interface CountryType {
   population: number;
   flag: string;
   likes: number;
+  active: boolean;
 }

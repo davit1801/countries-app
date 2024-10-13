@@ -1,0 +1,15 @@
+.delete_btn {
+  border-radius: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: rgba(172, 18, 4, 0.863);
+  color: #fff;
+}
+
+.recovery_btn {
+  border-radius: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: rgba(4, 172, 21, 0.863);
+  color: #fff;
+}

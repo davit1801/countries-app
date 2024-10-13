@@ -1,4 +1,4 @@
-.country_card {
+.country_card_active {
   margin: 2rem 0;
   padding: 2rem;
   display: flex;
@@ -10,6 +10,20 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   color: black;
+}
+
+.country_card_inactive {
+  background-color: rgba(19, 14, 14, 0.84);
+  margin: 2rem 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  font-size: 1.8rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  color: rgb(140, 130, 130);
 }
 
 .country_img {

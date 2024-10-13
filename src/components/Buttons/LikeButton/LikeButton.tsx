@@ -21,7 +21,11 @@ const LikeButton: React.FC<ComponentProps> = ({ country, dispatch }) => {
   };
 
   return (
-    <button className={styles.like_btn} onClick={handleClick}>
+    <button
+      className={styles.like_btn}
+      onClick={handleClick}
+      disabled={!country.active}
+    >
       <img src={icon} alt="like icon" />
       <span className={styles.btn_text}>Like</span>
       <span className={styles.count_num}>{country.likes}</span>
