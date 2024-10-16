@@ -1,7 +1,8 @@
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 import { CountryType } from '@/pages/country/views/list/reducer/state';
-import React, { Dispatch, FormEvent } from 'react';
+import React, { Dispatch, FormEvent, useState } from 'react';
 import styles from './CountryCreateForm.module.css';
+import CountryCreateInput from '@/pages/country/components/CountryCreateInput/CountryCreateInput';
 
 type CountryCreateForm = {
   countriesList: CountryType[];
@@ -12,61 +13,79 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   dispatch,
   countriesList,
 }) => {
+  const [countryName, setCountryName] = useState<string>('');
+  const [countryCapital, setCountryCapital] = useState<string>('');
+  const [countryPopulation, setCountryPopulation] = useState<string>('');
+  const [countryImage, setCountryImage] = useState<string>('');
+  const [errMessage, setErrMessage] = useState('');
+
+  const resetCountryForm = () => {
+    setCountryName('');
+    setCountryCapital('');
+    setCountryPopulation('');
+    setCountryImage('');
+  };
+
   const handleCreateCountry = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const countryObj: any = {
-      // id: (+countriesList.at(-1)?.id + 1).toString(),
-      id: (countriesList.length + 1).toString(),
-      likes: 0,
-      active: true,
-    };
-    const formData = new FormData(e.currentTarget);
-
-    for (const [key, value] of formData) {
-      countryObj[key] = value;
-    }
+    if (
+      countryName === '' ||
+      countryCapital === '' ||
+      countryPopulation === '' ||
+      countryImage === ''
+    ) {
+      setErrMessage('გთხოვთ შეავსოთ ყველა ველი!');
+      return;
+    } else setErrMessage('');
 
     dispatch({
       type: 'createCountry',
       payload: {
-        newCountry: countryObj,
+        newCountry: {
+          id: (countriesList.length + 1).toString(),
+          likes: 0,
+          active: true,
+          name: countryName,
+          capital: countryCapital,
+          population: +countryPopulation,
+          flag: countryImage,
+        },
       },
     });
 
-    e.currentTarget.reset();
-    console.log(countryObj);
+    resetCountryForm();
   };
 
   return (
     <form className={styles.country_form} onSubmit={handleCreateCountry}>
-      <input
-        className={styles.form_input}
+      <CountryCreateInput
         name="name"
         placeholder="Country Name"
-        required
+        value={countryName}
+        setValue={setCountryName}
       />
-      <input
-        className={styles.form_input}
+      <CountryCreateInput
         name="capital"
         placeholder="Country Capital"
-        required
+        value={countryCapital}
+        setValue={setCountryCapital}
       />
-      <input
-        className={styles.form_input}
+      <CountryCreateInput
         name="population"
         placeholder="Country population"
-        required
+        value={countryPopulation}
+        setValue={setCountryPopulation}
       />
-      <input
-        className={styles.form_input}
-        name="flag"
+      <CountryCreateInput
+        name="image"
         placeholder="Country image URL"
-        required
+        value={countryImage}
+        setValue={setCountryImage}
       />
       <button className={styles.create_btn} type="submit">
         Create Country
       </button>
+      <span className={styles.errorMsg}>{errMessage}</span>
     </form>
   );
 };

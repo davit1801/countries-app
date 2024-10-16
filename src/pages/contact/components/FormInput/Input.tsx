@@ -1,14 +1,25 @@
-import styles from '@/pages/contact/components/FormInput/Input.module.css'
+import styles from '@/pages/contact/components/FormInput/Input.module.css';
+import { ChangeEvent } from 'react';
 
-type Props = {
+type inputProps = {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   type: string;
-  inputName: string;
+  name: string;
   placeholder: string;
 };
 
-const Input = ({ type, placeholder, inputName }: Props) => {
+const Input: React.FC<inputProps> = ({ setValue, ...props }) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
   return (
-    <input className={styles.form_input} type={type} placeholder={placeholder} name={inputName} required />
+    <input
+      required
+      className={styles.form_input}
+      onChange={handleChangeInput}
+      {...props}
+    />
   );
 };
 
