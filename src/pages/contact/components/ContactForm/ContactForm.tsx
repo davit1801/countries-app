@@ -1,26 +1,30 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useState } from 'react';
 import styles from '@/pages/contact/components/ContactForm/ContactForm.module.css';
 import Input from '@/pages/contact/components/FormInput/Input';
 import FormTextArea from '@/pages/contact/components/FormTextArea/FormTextArea';
 import FormButton from '@/pages/contact/components/FormButton/FormButton';
 
-const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const formValuesObj: any = {};
-
-  const formValues = new FormData(event.currentTarget);
-
-  for (const [key, value] of formValues) {
-    formValuesObj[key] = value;
-  }
-
-  form.reset();
-};
-
 const ContactForm: React.FC = () => {
+  const [firstname, setFirstname] = useState('');
+  const [lastName, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [textarea, setTextarea] = useState('');
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = {
+      firstname,
+      lastName,
+      email,
+      textarea,
+    };
+    console.log(formData);
+    setFirstname('');
+    setLastname('');
+    setEmail('');
+    setTextarea('');
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -28,11 +32,34 @@ const ContactForm: React.FC = () => {
       className={styles.contact_form}
     >
       <div className={styles.input_names}>
-        <Input inputName="firstname" placeholder="First Name" type="text" />
-        <Input inputName="lastname" placeholder="Last Name" type="text" />
+        <Input
+          name="firstname"
+          placeholder="First Name"
+          type="text"
+          value={firstname}
+          setValue={setFirstname}
+        />
+        <Input
+          name="lastname"
+          placeholder="Last Name"
+          type="text"
+          value={lastName}
+          setValue={setLastname}
+        />
       </div>
-      <Input inputName="email" placeholder="Email" type="email" />
-      <FormTextArea inputName="textarea" placeholder="Message" />
+      <Input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value={email}
+        setValue={setEmail}
+      />
+      <FormTextArea
+        name="textarea"
+        placeholder="Message"
+        value={textarea}
+        setValue={setTextarea}
+      />
       <FormButton />
     </form>
   );

@@ -18,9 +18,7 @@ const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
 
   return (
     <select onChange={handleSortChange} className={styles.select_input}>
-      <option value="" selected hidden>
-        Sort by
-      </option>
+      <option hidden>Sort by</option>
       <option value="decrease">Decreases by likes</option>
       <option value="increase">Encreases by likes</option>
     </select>

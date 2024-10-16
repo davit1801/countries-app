@@ -2,18 +2,8 @@
   border: 1px solid rgba(0, 0, 0, 0.526);
   padding: 1rem;
   display: flex;
+  align-items: center;
   gap: 1rem;
-}
-
-.form_input {
-  background-color: #d8d1d1;
-  padding: 0.5rem;
-  color: #000;
-  border-radius: 0.5rem;
-}
-
-.form_input:hover {
-  border-bottom: 2px solid #181818;
 }
 
 .create_btn {
@@ -22,4 +12,9 @@
   background-color: black;
   color: white;
   cursor: pointer;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 1.6rem;
 }
