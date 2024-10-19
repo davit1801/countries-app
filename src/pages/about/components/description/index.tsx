@@ -1,9 +1,13 @@
+import CONTENT from '@/static/siteContent';
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const AboutDescription: React.FC = () => {
+  const { lang } = useParams();
+  const { aboutPageText } = CONTENT[lang ?? 'ka'];
   return (
-    <div style={{ textAlign: 'center', fontSize:'2.4rem' }}>
-      About Page Romelic Jer ar gamistilavs :D
+    <div style={{ textAlign: 'center', fontSize: '2.4rem' }}>
+      {aboutPageText}
     </div>
   );
 };

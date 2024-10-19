@@ -1,18 +1,21 @@
-import Button from '@/components/Buttons/ContactButton/ContactButton';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/base/Header/Navigation/Navigation';
 import styles from '@/components/base/Header/header.module.css';
-import { Link } from 'react-router-dom';
+import ChangeLangBtn from '@/components/Buttons/ChangeLangBtn/ChangeLangBtn';
 
 const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className="container">
         <div className={styles.header__container}>
-          <Link to={'/'}>
+          <Link to={'countries'}>
             <span className={styles.app_name}>Travel Your Way</span>
           </Link>
           <Navigation />
-          <Button />
+          <div className={styles.lang_container}>
+            <ChangeLangBtn title={'Geo'} langName={'ka'} />
+            <ChangeLangBtn title={'Eng'} langName={'eng'} />
+          </div>
         </div>
       </div>
     </header>

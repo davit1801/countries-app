@@ -1,12 +1,16 @@
-import React from 'react'
-import styles from '@/components/base/Footer/Footer.module.css'
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import styles from '@/components/base/Footer/Footer.module.css';
+import CONTENT from '@/static/siteContent';
 
-const Footer:React.FC = () => {
+const Footer: React.FC = () => {
+  const { lang } = useParams();
+  const { copyrightTitle } = CONTENT[lang ?? 'ka'];
   return (
     <footer className={styles.footer}>
-      <p>Copyright © 2024 All rights reserved</p>
+      <p>{copyrightTitle}</p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

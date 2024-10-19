@@ -20,8 +20,6 @@ const CountryListView: React.FC = () => {
     countriesInitialState
   );
 
-  console.log(countriesList);
-
   return (
     <>
       <HeroSection />
@@ -35,7 +33,7 @@ const CountryListView: React.FC = () => {
                 <Card country={country}>
                   <CardInfo country={country} />
                   <LikeButton country={country} dispatch={dispatch} />
-                  <CountryDelateBtn  country={country} dispatch={dispatch}/>
+                  <CountryDelateBtn country={country} dispatch={dispatch} />
                 </Card>
               </li>
             );

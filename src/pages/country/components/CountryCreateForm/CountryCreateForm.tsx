@@ -3,6 +3,8 @@ import { CountryType } from '@/pages/country/views/list/reducer/state';
 import React, { Dispatch, FormEvent, useState } from 'react';
 import styles from './CountryCreateForm.module.css';
 import CountryCreateInput from '@/pages/country/components/CountryCreateInput/CountryCreateInput';
+import { useParams } from 'react-router-dom';
+import CONTENT from '@/static/siteContent';
 
 type CountryCreateForm = {
   countriesList: CountryType[];
@@ -13,6 +15,8 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   dispatch,
   countriesList,
 }) => {
+  const { lang } = useParams();
+  const { countyCreatePlaceholders, countryCreateBtn } = CONTENT[lang ?? 'ka'];
   const [countryName, setCountryName] = useState<string>('');
   const [countryCapital, setCountryCapital] = useState<string>('');
   const [countryPopulation, setCountryPopulation] = useState<string>('');
@@ -60,30 +64,30 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
     <form className={styles.country_form} onSubmit={handleCreateCountry}>
       <CountryCreateInput
         name="name"
-        placeholder="Country Name"
+        placeholder={countyCreatePlaceholders.countryName}
         value={countryName}
         setValue={setCountryName}
       />
       <CountryCreateInput
         name="capital"
-        placeholder="Country Capital"
+        placeholder={countyCreatePlaceholders.countryCapital}
         value={countryCapital}
         setValue={setCountryCapital}
       />
       <CountryCreateInput
         name="population"
-        placeholder="Country population"
+        placeholder={countyCreatePlaceholders.countryPopulation}
         value={countryPopulation}
         setValue={setCountryPopulation}
       />
       <CountryCreateInput
         name="image"
-        placeholder="Country image URL"
+        placeholder={countyCreatePlaceholders.countryImg}
         value={countryImage}
         setValue={setCountryImage}
       />
       <button className={styles.create_btn} type="submit">
-        Create Country
+        {countryCreateBtn}
       </button>
       <span className={styles.errorMsg}>{errMessage}</span>
     </form>

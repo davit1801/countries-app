@@ -3,12 +3,16 @@ import styles from '@/pages/contact/components/ContactForm/ContactForm.module.cs
 import Input from '@/pages/contact/components/FormInput/Input';
 import FormTextArea from '@/pages/contact/components/FormTextArea/FormTextArea';
 import FormButton from '@/pages/contact/components/FormButton/FormButton';
+import { useParams } from 'react-router-dom';
+import CONTENT from '@/static/siteContent';
 
 const ContactForm: React.FC = () => {
   const [firstname, setFirstname] = useState('');
   const [lastName, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [textarea, setTextarea] = useState('');
+  const { lang } = useParams();
+  const { contactInputsPlacehplders, contactSendBtn } = CONTENT[lang ?? 'ka'];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,14 +38,14 @@ const ContactForm: React.FC = () => {
       <div className={styles.input_names}>
         <Input
           name="firstname"
-          placeholder="First Name"
+          placeholder={contactInputsPlacehplders.firstName}
           type="text"
           value={firstname}
           setValue={setFirstname}
         />
         <Input
           name="lastname"
-          placeholder="Last Name"
+          placeholder={contactInputsPlacehplders.lastName}
           type="text"
           value={lastName}
           setValue={setLastname}
@@ -49,18 +53,18 @@ const ContactForm: React.FC = () => {
       </div>
       <Input
         name="email"
-        placeholder="Email"
+        placeholder={contactInputsPlacehplders.email}
         type="email"
         value={email}
         setValue={setEmail}
       />
       <FormTextArea
         name="textarea"
-        placeholder="Message"
+        placeholder={contactInputsPlacehplders.message}
         value={textarea}
         setValue={setTextarea}
       />
-      <FormButton />
+      <FormButton text={contactSendBtn} />
     </form>
   );
 };
