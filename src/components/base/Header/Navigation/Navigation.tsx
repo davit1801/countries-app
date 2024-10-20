@@ -2,10 +2,10 @@
 import NavItem from '@/components/base/Header/NavItem/NavItem';
 import styles from './navigation.module.css';
 import { useParams } from 'react-router-dom';
-import CONTENT from '@/static/siteContent';
+import CONTENT, { ParamsType } from '@/static/siteContent';
 
 const Navigation: React.FC = () => {
-  const { lang } = useParams();
+  const { lang } = useParams<ParamsType>();
   const { navLinks } = CONTENT[lang ?? 'ka'];
 
   return (

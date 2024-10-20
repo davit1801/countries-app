@@ -1,15 +1,8 @@
+import { CountryType } from '@/pages/country/views/list/reducer/state';
 import styles from './CountryDetails.module.css';
 
-interface CountryInfo {
-  name: string;
-  capital: string;
-  population: number;
-  flag: string;
-  id: string;
-}
-
 interface CountryDetailsProps {
-  info: CountryInfo;
+  info: CountryType;
 }
 
 const CountryDetails: React.FC<CountryDetailsProps> = ({ info }) => {

@@ -4,7 +4,7 @@ import React, { Dispatch, FormEvent, useState } from 'react';
 import styles from './CountryCreateForm.module.css';
 import CountryCreateInput from '@/pages/country/components/CountryCreateInput/CountryCreateInput';
 import { useParams } from 'react-router-dom';
-import CONTENT from '@/static/siteContent';
+import CONTENT, { ParamsType } from '@/static/siteContent';
 
 type CountryCreateForm = {
   countriesList: CountryType[];
@@ -15,7 +15,7 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   dispatch,
   countriesList,
 }) => {
-  const { lang } = useParams();
+  const { lang } = useParams<ParamsType>();
   const { countyCreatePlaceholders, countryCreateBtn } = CONTENT[lang ?? 'ka'];
   const [countryName, setCountryName] = useState<string>('');
   const [countryCapital, setCountryCapital] = useState<string>('');

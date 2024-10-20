@@ -2,14 +2,14 @@ import React, { Dispatch } from 'react';
 import styles from './SortSelect.module.css';
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 import { useParams } from 'react-router-dom';
-import CONTENT from '@/static/siteContent';
+import CONTENT, { ParamsType } from '@/static/siteContent';
 
 type PropsType = {
   dispatch: Dispatch<countriesReducerAction>;
 };
 
 const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
-  const { lang } = useParams();
+  const { lang } = useParams<ParamsType>();
   const { countrySort } = CONTENT[lang ?? 'ka'];
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({

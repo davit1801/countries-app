@@ -34,6 +34,10 @@ interface SiteContent {
   aboutPageText: string;
 }
 
+export type ParamsType = {
+  lang?: keyof typeof CONTENT;
+};
+
 const CONTENT: ContentMap = {
   eng: {
     navLinks: [
