@@ -1,6 +1,10 @@
-
-
-.lang_btn{
+.lang_btn {
   cursor: pointer;
   padding: 1rem;
+}
+.active_lang_btn {
+  cursor: pointer;
+  padding: 1rem;
+  color: #fff;
+  background-color: rgb(118, 170, 40);
 }
