@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import '@/App.css';
 import Layout from '@/components/Layout/Layout';
 import AboutView from '@/pages/about/views';
-import { lazy, Suspense, useReducer, useState } from 'react';
+import { lazy, Suspense, useReducer } from 'react';
 import DetailsCountry from '@/pages/country/views/DetailsCountry';
 import NotFoundPage from '@/pages/404';
 import { countriesReducer } from '@/pages/country/views/list/reducer/reducer';
@@ -18,11 +18,9 @@ function App() {
     countriesInitialState.ka,
   );
 
-               const [count,setCount] = useState(0)
-
   return (
     <>
-                   <Routes>
+      <Routes>
         <Route path="/:lang" element={<Layout />}>
           <Route
             path="countries"

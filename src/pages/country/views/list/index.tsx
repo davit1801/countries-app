@@ -1,15 +1,15 @@
-import { Dispatch } from "react";
-import styles from "./index.module.css";
-import HeroSection from "@/pages/country/components/HeroSection/HeroSection";
-import CountrySection from "@/pages/country/components/CountrySection/CountrySection";
-import Card from "@/pages/country/components/Card/Card";
-import CardInfo from "@/pages/country/components/Card/CardInfo/CardInfo";
-import LikeButton from "@/components/Buttons/LikeButton/LikeButton";
-import SortSelect from "@/pages/country/components/SortSelect/SortSelect";
-import { CountryType } from "@/pages/country/views/list/reducer/state";
-import { countriesReducerAction } from "@/pages/country/views/list/reducer/reducer";
-import CountryCreateForm from "@/pages/country/components/CountryCreateForm/CountryCreateForm";
-import CountryDelateBtn from "@/components/Buttons/CountryDelateBtn/CountryDelateBtn";
+import { Dispatch } from 'react';
+import styles from './index.module.css';
+import HeroSection from '@/pages/country/components/HeroSection/HeroSection';
+import CountrySection from '@/pages/country/components/CountrySection/CountrySection';
+import Card from '@/pages/country/components/Card/Card';
+import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
+import LikeButton from '@/components/Buttons/LikeButton/LikeButton';
+import SortSelect from '@/pages/country/components/SortSelect/SortSelect';
+import { CountryType } from '@/pages/country/views/list/reducer/state';
+import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
+import CountryCreateForm from '@/pages/country/components/CountryCreateForm/CountryCreateForm';
+import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
 
 interface ComponentProps {
   countriesList: CountryType[];

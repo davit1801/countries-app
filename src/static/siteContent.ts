@@ -23,6 +23,11 @@ interface SiteContent {
     countryPopulation: string;
     countryImg: string;
   };
+  detailCountryTitles: {
+    capital: string;
+    population: string;
+    million: string;
+  };
   contactFormTitle: string;
   contactInputsPlacehplders: {
     firstName: string;
@@ -36,70 +41,81 @@ interface SiteContent {
 
 export type ParamsType = {
   lang?: keyof typeof CONTENT;
+  id?: string;
 };
 
 const CONTENT: ContentMap = {
   eng: {
     navLinks: [
-      { name: "Home", path: "countries" },
-      { name: "About", path: "about" },
-      { name: "Contact", path: "contact" },
+      { name: 'Home', path: 'countries' },
+      { name: 'About', path: 'about' },
+      { name: 'Contact', path: 'contact' },
     ],
-    heroHeading: "We Find The Best Tours For You",
-    countriesHeading: "Popular Countries",
-    copyrightTitle: "Copyright © 2024 All rights reserved",
+    heroHeading: 'We Find The Best Tours For You',
+    countriesHeading: 'Popular Countries',
+    copyrightTitle: 'Copyright © 2024 All rights reserved',
     countrySort: {
-      title: "Sort By",
-      increase: "Encreases by likes",
-      decrease: "Encreases by likes",
+      title: 'Sort By',
+      increase: 'Encreases by likes',
+      decrease: 'Encreases by likes',
     },
-    countryCreateBtn: "Create Country",
+    countryCreateBtn: 'Create Country',
     countyCreatePlaceholders: {
-      countryName: "Country Name",
-      countryCapital: "Country Capital",
-      countryPopulation: "Country Population",
-      countryImg: "country Image URL",
+      countryName: 'Country Name',
+      countryCapital: 'Country Capital',
+      countryPopulation: 'Country Population',
+      countryImg: 'country Image URL',
     },
-    contactFormTitle: "Contact Us",
+    detailCountryTitles: {
+      capital: 'Capital',
+      population: 'Population',
+      million: 'Million',
+    },
+    contactFormTitle: 'Contact Us',
     contactInputsPlacehplders: {
-      firstName: "First name",
-      lastName: "Last name",
-      email: "Email",
-      message: "Message",
+      firstName: 'First name',
+      lastName: 'Last name',
+      email: 'Email',
+      message: 'Message',
     },
-    contactSendBtn: "SEND",
-    aboutPageText: "About Page Romelic Jer ar gamistilavs :D",
+    contactSendBtn: 'SEND',
+    aboutPageText: 'About Page Romelic Jer ar gamistilavs :D',
   },
   ka: {
     navLinks: [
-      { name: "მთავარი", path: "countries" },
-      { name: "ჩვენს შესახებ", path: "about" },
-      { name: "დაგვიკავშირდით", path: "contact" },
+      { name: 'მთავარი', path: 'countries' },
+      { name: 'ჩვენს შესახებ', path: 'about' },
+      { name: 'დაგვიკავშირდით', path: 'contact' },
     ],
-    heroHeading: "ჩვენ ვპოულობთ საუკეთესო ტურებს თქვენთვის",
-    countriesHeading: "პოპულარული ქვეყნები",
-    copyrightTitle: "ყველა უფლება დაცულია © 2024",
+    heroHeading: 'ჩვენ ვპოულობთ საუკეთესო ტურებს თქვენთვის',
+    countriesHeading: 'პოპულარული ქვეყნები',
+    copyrightTitle: 'ყველა უფლება დაცულია © 2024',
     countrySort: {
-      title: "დალაგება",
-      increase: "მოწონებების ზრდადობით",
-      decrease: "მოწონებების კლებადობით",
+      title: 'დალაგება',
+      increase: 'მოწონებების ზრდადობით',
+      decrease: 'მოწონებების კლებადობით',
     },
-    countryCreateBtn: "ქვეყნის შექმნა",
+    countryCreateBtn: 'ქვეყნის შექმნა',
     countyCreatePlaceholders: {
-      countryName: "ქვეყნის დასახელება",
-      countryCapital: "ქვეყნის დედაქალაქი",
-      countryPopulation: "მოსახლეობის რაოდენობა",
-      countryImg: "ქვეყნის დროშა",
+      countryName: 'ქვეყნის დასახელება',
+      countryCapital: 'ქვეყნის დედაქალაქი',
+      countryPopulation: 'მოსახლეობის რაოდენობა',
+      countryImg: 'ქვეყნის დროშა',
     },
-    contactFormTitle: "დაგვიკავშირდით",
+    detailCountryTitles: {
+      capital: 'დედაქალაქი',
+      population: 'მოსახლეობა',
+      million: 'მილიონი',
+    },
+    contactFormTitle: 'დაგვიკავშირდით',
     contactInputsPlacehplders: {
-      firstName: "სახელი",
-      lastName: "გვარი",
-      email: "მეილი",
-      message: "მესიჯი",
+      firstName: 'სახელი',
+      lastName: 'გვარი',
+      email: 'მეილი',
+      message: 'მესიჯი',
     },
-    contactSendBtn: "გაგზავნა",
-    aboutPageText: "ჩვენს შესახებ გვერდი, რომელიც ჯერ არ გამისტილავს:D",
+    contactSendBtn: 'გაგზავნა',
+    aboutPageText: 'ჩვენს შესახებ გვერდი, რომელიც ჯერ არ გამისტილავს:D',
   },
 };
 

@@ -1,10 +1,10 @@
-import { countriesReducerAction } from "@/pages/country/views/list/reducer/reducer";
-import { CountryType } from "@/pages/country/views/list/reducer/state";
-import React, { Dispatch, FormEvent, useState } from "react";
-import styles from "./CountryCreateForm.module.css";
-import CountryCreateInput from "@/pages/country/components/CountryCreateInput/CountryCreateInput";
-import { useParams } from "react-router-dom";
-import CONTENT, { ParamsType } from "@/static/siteContent";
+import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
+import { CountryType } from '@/pages/country/views/list/reducer/state';
+import React, { Dispatch, FormEvent, useState } from 'react';
+import styles from './CountryCreateForm.module.css';
+import CountryCreateInput from '@/pages/country/components/CountryCreateInput/CountryCreateInput';
+import { useParams } from 'react-router-dom';
+import CONTENT, { ParamsType } from '@/static/siteContent';
 
 interface CountryCreateForm {
   countriesList: CountryType[];
@@ -16,35 +16,35 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   countriesList,
 }) => {
   const { lang } = useParams<ParamsType>();
-  const { countyCreatePlaceholders, countryCreateBtn } = CONTENT[lang ?? "ka"];
-  const [countryName, setCountryName] = useState<string>("");
-  const [countryCapital, setCountryCapital] = useState<string>("");
-  const [countryPopulation, setCountryPopulation] = useState<string>("");
-  const [countryImage, setCountryImage] = useState<string>("");
-  const [errMessage, setErrMessage] = useState("");
+  const { countyCreatePlaceholders, countryCreateBtn } = CONTENT[lang ?? 'ka'];
+  const [countryName, setCountryName] = useState<string>('');
+  const [countryCapital, setCountryCapital] = useState<string>('');
+  const [countryPopulation, setCountryPopulation] = useState<string>('');
+  const [countryImage, setCountryImage] = useState<string>('');
+  const [errMessage, setErrMessage] = useState('');
   // const [selectedFormLang, setSelectedFormLang] = useState<string>('ka');
 
   const resetCountryForm = () => {
-    setCountryName("");
-    setCountryCapital("");
-    setCountryPopulation("");
-    setCountryImage("");
+    setCountryName('');
+    setCountryCapital('');
+    setCountryPopulation('');
+    setCountryImage('');
   };
 
   const handleCreateCountry = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      countryName === "" ||
-      countryCapital === "" ||
-      countryPopulation === "" ||
-      countryImage === ""
+      countryName === '' ||
+      countryCapital === '' ||
+      countryPopulation === '' ||
+      countryImage === ''
     ) {
-      setErrMessage("გთხოვთ შეავსოთ ყველა ველი!");
+      setErrMessage('გთხოვთ შეავსოთ ყველა ველი!');
       return;
-    } else setErrMessage("");
+    } else setErrMessage('');
 
     dispatch({
-      type: "createCountry",
+      type: 'createCountry',
       payload: {
         newCountry: {
           id: (countriesList.length + 1).toString(),

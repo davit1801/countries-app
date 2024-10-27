@@ -1,5 +1,5 @@
-import styles from "@/pages/contact/components/FormInput/Input.module.css";
-import { ChangeEvent } from "react";
+import styles from '@/pages/contact/components/FormInput/Input.module.css';
+import { ChangeEvent } from 'react';
 
 type inputProps = {
   value: string;

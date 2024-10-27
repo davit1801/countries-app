@@ -1,5 +1,5 @@
-import { useNavigate, useParams } from "react-router-dom";
-import styles from "./ChangeLangBtn.module.css";
+import { useNavigate, useParams } from 'react-router-dom';
+import styles from './ChangeLangBtn.module.css';
 
 type ChangeLangBtnProps = {
   title: string;
@@ -17,7 +17,7 @@ const ChangeLangBtn: React.FC<ChangeLangBtnProps> = ({ title, langName }) => {
   return (
     <button
       className={`${styles.lang_btn} ${
-        lang === langName ? styles.active_lang_btn : ""
+        lang === langName ? styles.active_lang_btn : ''
       }`}
       onClick={() => handleChangeLang(langName)}
     >

@@ -1,7 +1,7 @@
-import { CountryType } from "@/pages/country/views/list/reducer/state";
-import styles from "./card.module.css";
-import { PropsWithChildren } from "react";
-import { Link } from "react-router-dom";
+import { CountryType } from '@/pages/country/views/list/reducer/state';
+import styles from './card.module.css';
+import { PropsWithChildren } from 'react';
+import { Link } from 'react-router-dom';
 
 interface cardProps {
   country: CountryType;

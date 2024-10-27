@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import styles from "./CardInfo.module.css";
-import { CountryType } from "@/pages/country/views/list/reducer/state";
+import React, { PropsWithChildren } from 'react';
+import styles from './CardInfo.module.css';
+import { CountryType } from '@/pages/country/views/list/reducer/state';
 
 interface ComponentProps {
   country: CountryType;

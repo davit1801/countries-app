@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import styles from "./CountryCreateInput.module.css";
+import React, { ChangeEvent } from 'react';
+import styles from './CountryCreateInput.module.css';
 
 type countryCreateInputProps = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
