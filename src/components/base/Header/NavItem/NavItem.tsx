@@ -1,5 +1,5 @@
-import styles from './navItem.module.css';
-import { NavLink, NavLinkRenderProps } from 'react-router-dom';
+import styles from "./navItem.module.css";
+import { NavLink, NavLinkRenderProps } from "react-router-dom";
 
 type Props = {
   name: string;
@@ -7,7 +7,7 @@ type Props = {
 };
 
 const handleActiveNav = ({ isActive }: NavLinkRenderProps) =>
-  isActive ? styles['active_nav_item'] : styles['nav_item'];
+  isActive ? styles["active_nav_item"] : styles["nav_item"];
 
 const NavItem = ({ name, path }: Props) => {
   return (

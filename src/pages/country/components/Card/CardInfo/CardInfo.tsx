@@ -1,16 +1,9 @@
-import React, { PropsWithChildren } from 'react';
-import styles from './CardInfo.module.css';
-
-interface Country {
-  flag: string;
-  name: string;
-  capital: string;
-  population: number;
-  id: string;
-}
+import React, { PropsWithChildren } from "react";
+import styles from "./CardInfo.module.css";
+import { CountryType } from "@/pages/country/views/list/reducer/state";
 
 interface ComponentProps {
-  country: Country;
+  country: CountryType;
 }
 
 const CardInfo: React.FC<PropsWithChildren<ComponentProps>> = ({ country }) => {

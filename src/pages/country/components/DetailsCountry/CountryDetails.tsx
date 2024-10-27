@@ -1,5 +1,5 @@
-import { CountryType } from '@/pages/country/views/list/reducer/state';
-import styles from './CountryDetails.module.css';
+import { CountryType } from "@/pages/country/views/list/reducer/state";
+import styles from "./CountryDetails.module.css";
 
 interface CountryDetailsProps {
   info: CountryType;

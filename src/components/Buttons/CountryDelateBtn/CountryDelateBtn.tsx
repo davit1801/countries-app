@@ -1,8 +1,8 @@
-import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { CountryType } from '@/pages/country/views/list/reducer/state';
-import React, { Dispatch } from 'react';
-import styles from './CountryDelateBtn.module.css';
-import { MdDelete, MdRestore } from 'react-icons/md';
+import { countriesReducerAction } from "@/pages/country/views/list/reducer/reducer";
+import { CountryType } from "@/pages/country/views/list/reducer/state";
+import React, { Dispatch } from "react";
+import styles from "./CountryDelateBtn.module.css";
+import { MdDelete, MdRestore } from "react-icons/md";
 
 interface ComponentProps {
   country: CountryType;
@@ -10,10 +10,10 @@ interface ComponentProps {
 }
 
 const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
-  const handleDeleteCard: React.MouseEventHandler<HTMLButtonElement> = e => {
+  const handleDeleteCard: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'delete',
+      type: "delete",
       payload: {
         id: country.id,
       },
@@ -26,7 +26,10 @@ const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
     // >
     //   {country.active ? <MdDelete /> : 'Recovery Card'}
     // </button>
-    <button className={country.active ? styles.delete_btn : styles.recovery_btn} onClick={handleDeleteCard}>
+    <button
+      className={country.active ? styles.delete_btn : styles.recovery_btn}
+      onClick={handleDeleteCard}
+    >
       {country.active ? <MdDelete /> : <MdRestore />}
     </button>
   );

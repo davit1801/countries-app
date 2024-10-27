@@ -1,5 +1,5 @@
-import styles from '@/pages/contact/components/FormTextArea/FormTextArea.module.css';
-import { ChangeEvent } from 'react';
+import styles from "@/pages/contact/components/FormTextArea/FormTextArea.module.css";
+import { ChangeEvent } from "react";
 
 type Props = {
   setValue: React.Dispatch<React.SetStateAction<string>>;

@@ -1,18 +1,18 @@
-import React, { FormEvent, useState } from 'react';
-import styles from '@/pages/contact/components/ContactForm/ContactForm.module.css';
-import Input from '@/pages/contact/components/FormInput/Input';
-import FormTextArea from '@/pages/contact/components/FormTextArea/FormTextArea';
-import FormButton from '@/pages/contact/components/FormButton/FormButton';
-import { useParams } from 'react-router-dom';
-import CONTENT, { ParamsType } from '@/static/siteContent';
+import React, { FormEvent, useState } from "react";
+import styles from "@/pages/contact/components/ContactForm/ContactForm.module.css";
+import Input from "@/pages/contact/components/FormInput/Input";
+import FormTextArea from "@/pages/contact/components/FormTextArea/FormTextArea";
+import FormButton from "@/pages/contact/components/FormButton/FormButton";
+import { useParams } from "react-router-dom";
+import CONTENT, { ParamsType } from "@/static/siteContent";
 
 const ContactForm: React.FC = () => {
-  const [firstname, setFirstname] = useState('');
-  const [lastName, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [textarea, setTextarea] = useState('');
+  const [firstname, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [textarea, setTextarea] = useState("");
   const { lang } = useParams<ParamsType>();
-  const { contactInputsPlacehplders, contactSendBtn } = CONTENT[lang ?? 'ka'];
+  const { contactInputsPlacehplders, contactSendBtn } = CONTENT[lang ?? "ka"];
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,10 +23,10 @@ const ContactForm: React.FC = () => {
       textarea,
     };
     console.log(formData);
-    setFirstname('');
-    setLastname('');
-    setEmail('');
-    setTextarea('');
+    setFirstname("");
+    setLastname("");
+    setEmail("");
+    setTextarea("");
   };
 
   return (

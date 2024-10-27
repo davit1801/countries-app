@@ -1,7 +1,7 @@
-import { CountryType } from '@/pages/country/views/list/reducer/state';
-import styles from './card.module.css';
-import { PropsWithChildren } from 'react';
-import { Link } from 'react-router-dom';
+import { CountryType } from "@/pages/country/views/list/reducer/state";
+import styles from "./card.module.css";
+import { PropsWithChildren } from "react";
+import { Link } from "react-router-dom";
 
 interface cardProps {
   country: CountryType;
@@ -22,7 +22,7 @@ const Card: React.FC<PropsWithChildren<cardProps>> = ({
       >
         <img
           className={styles.country_img}
-          src={country.flag}
+          src={country.image}
           alt={`${country.name}'s flag`}
         />
         {children}

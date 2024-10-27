@@ -1,8 +1,8 @@
-import React, { Dispatch } from 'react';
-import styles from './SortSelect.module.css';
-import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { useParams } from 'react-router-dom';
-import CONTENT, { ParamsType } from '@/static/siteContent';
+import React, { Dispatch } from "react";
+import styles from "./SortSelect.module.css";
+import { countriesReducerAction } from "@/pages/country/views/list/reducer/reducer";
+import { useParams } from "react-router-dom";
+import CONTENT, { ParamsType } from "@/static/siteContent";
 
 type PropsType = {
   dispatch: Dispatch<countriesReducerAction>;
@@ -10,10 +10,10 @@ type PropsType = {
 
 const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
   const { lang } = useParams<ParamsType>();
-  const { countrySort } = CONTENT[lang ?? 'ka'];
+  const { countrySort } = CONTENT[lang ?? "ka"];
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({
-      type: 'sort',
+      type: "sort",
       payload: {
         sortType: e.target.value,
       },

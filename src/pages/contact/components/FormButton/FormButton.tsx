@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '@/pages/contact/components/FormButton/FormButton.module.css';
+import React from "react";
+import styles from "@/pages/contact/components/FormButton/FormButton.module.css";
 
 type FormButtonProps = {
   text: string;

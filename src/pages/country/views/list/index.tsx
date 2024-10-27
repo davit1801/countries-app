@@ -1,25 +1,25 @@
-import { useReducer } from 'react';
-import styles from './index.module.css';
-import HeroSection from '@/pages/country/components/HeroSection/HeroSection';
-import CountrySection from '@/pages/country/components/CountrySection/CountrySection';
-import Card from '@/pages/country/components/Card/Card';
-import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
-import LikeButton from '@/components/Buttons/LikeButton/LikeButton';
-import SortSelect from '@/pages/country/components/SortSelect/SortSelect';
-import {
-  countriesInitialState,
-  CountryType,
-} from '@/pages/country/views/list/reducer/state';
-import { countriesReducer } from '@/pages/country/views/list/reducer/reducer';
-import CountryCreateForm from '@/pages/country/components/CountryCreateForm/CountryCreateForm';
-import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
+import { Dispatch } from "react";
+import styles from "./index.module.css";
+import HeroSection from "@/pages/country/components/HeroSection/HeroSection";
+import CountrySection from "@/pages/country/components/CountrySection/CountrySection";
+import Card from "@/pages/country/components/Card/Card";
+import CardInfo from "@/pages/country/components/Card/CardInfo/CardInfo";
+import LikeButton from "@/components/Buttons/LikeButton/LikeButton";
+import SortSelect from "@/pages/country/components/SortSelect/SortSelect";
+import { CountryType } from "@/pages/country/views/list/reducer/state";
+import { countriesReducerAction } from "@/pages/country/views/list/reducer/reducer";
+import CountryCreateForm from "@/pages/country/components/CountryCreateForm/CountryCreateForm";
+import CountryDelateBtn from "@/components/Buttons/CountryDelateBtn/CountryDelateBtn";
 
-const CountryListView: React.FC = () => {
-  const [countriesList, dispatch] = useReducer(
-    countriesReducer,
-    countriesInitialState
-  );
+interface ComponentProps {
+  countriesList: CountryType[];
+  dispatch: Dispatch<countriesReducerAction>;
+}
 
+const CountryListView: React.FC<ComponentProps> = ({
+  countriesList,
+  dispatch,
+}) => {
   return (
     <>
       <HeroSection />
