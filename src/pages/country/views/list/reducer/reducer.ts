@@ -1,10 +1,10 @@
-import { CountryType } from '@/pages/country/views/list/reducer/state';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
-export type countriesReducerAction = {
-  type: 'sort' | 'like' | 'createCountry' | 'delete';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any;
-};
+export type countriesReducerAction =
+  | { type: 'sort'; payload: { sortType: string } }
+  | { type: 'like'; payload: { id: string } }
+  | { type: 'createCountry'; payload: { newCountry: CountryType } }
+  | { type: 'delete'; payload: { id: string } };
 
 export const countriesReducer = (
   countryList: CountryType[],

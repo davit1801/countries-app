@@ -25,10 +25,7 @@ const CountryListView: React.FC<ComponentProps> = ({
       <HeroSection />
       <CountrySection>
         <SortSelect dispatch={dispatch} />
-        <CountryCreateForm
-            dispatch={dispatch}
-            countriesList={countriesList}
-          />
+        <CountryCreateForm dispatch={dispatch} countriesList={countriesList} />
         <ul className={styles.countries}>
           {countriesList.map((country: CountryType) => {
             return (
