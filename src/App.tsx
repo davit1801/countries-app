@@ -1,13 +1,14 @@
+import { lazy, Suspense, useReducer } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import '@/App.css';
 import Layout from '@/components/Layout/Layout';
 import AboutView from '@/pages/about/views';
-import { lazy, Suspense, useReducer } from 'react';
 import DetailsCountry from '@/pages/country/views/DetailsCountry';
 import NotFoundPage from '@/pages/404';
 import { countriesReducer } from '@/pages/country/views/list/reducer/reducer';
-import { countriesInitialState } from '@/pages/country/views/list/reducer/state';
 import Loading from '@/components/Loading';
+import { defaultLang } from '@/static/siteContent';
+import { countriesInitialState } from '@/pages/country/views/list/reducer/CountriesState';
 
 const HomePage = lazy(() => import('@/pages/country/views/list/index'));
 const ContactPage = lazy(() => import('@/pages/contact/views/index'));
@@ -15,7 +16,7 @@ const ContactPage = lazy(() => import('@/pages/contact/views/index'));
 function App() {
   const [countriesList, dispatch] = useReducer(
     countriesReducer,
-    countriesInitialState.ka,
+    countriesInitialState,
   );
 
   return (
@@ -30,7 +31,10 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="countries/country/:id" element={<DetailsCountry />} />
+          <Route
+            path="countries/country/:id"
+            element={<DetailsCountry countriesList={countriesList} />}
+          />
 
           <Route path="about" element={<AboutView />} />
 
@@ -43,7 +47,10 @@ function App() {
             }
           />
         </Route>
-        <Route path="/" element={<Navigate to={`/ka/countries`} />} />
+        <Route
+          path="/"
+          element={<Navigate to={`/${defaultLang}/countries`} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

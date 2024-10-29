@@ -1,10 +1,10 @@
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { CountryType } from '@/pages/country/views/list/reducer/state';
 import React, { Dispatch, FormEvent, useState } from 'react';
 import styles from './CountryCreateForm.module.css';
-import CountryCreateInput from '@/pages/country/components/CountryCreateInput/CountryCreateInput';
+import CountryCreateInput from '@/pages/country/components/Form/CountryCreateInput/CountryCreateInput';
 import { useParams } from 'react-router-dom';
 import CONTENT, { ParamsType } from '@/static/siteContent';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
 interface CountryCreateForm {
   countriesList: CountryType[];
@@ -17,16 +17,20 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
 }) => {
   const { lang } = useParams<ParamsType>();
   const { countyCreatePlaceholders, countryCreateBtn } = CONTENT[lang ?? 'ka'];
-  const [countryName, setCountryName] = useState<string>('');
-  const [countryCapital, setCountryCapital] = useState<string>('');
+  const [errMessage, setErrMessage] = useState('');
+
+  const [countryNameEng, setCountryNameEng] = useState<string>('');
+  const [countryNameKa, setCountryNameKa] = useState<string>('');
+  const [countryCapitalEng, setCountryCapitalEng] = useState<string>('');
+  const [countryCapitalKa, setCountryCapitalKa] = useState<string>('');
   const [countryPopulation, setCountryPopulation] = useState<string>('');
   const [countryImage, setCountryImage] = useState<string>('');
-  const [errMessage, setErrMessage] = useState('');
-  // const [selectedFormLang, setSelectedFormLang] = useState<string>('ka');
 
   const resetCountryForm = () => {
-    setCountryName('');
-    setCountryCapital('');
+    setCountryNameKa('');
+    setCountryNameEng('');
+    setCountryCapitalEng('');
+    setCountryCapitalKa('');
     setCountryPopulation('');
     setCountryImage('');
   };
@@ -34,8 +38,10 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   const handleCreateCountry = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      countryName === '' ||
-      countryCapital === '' ||
+      countryNameEng === '' ||
+      countryCapitalEng === '' ||
+      countryCapitalKa === '' ||
+      countryNameKa === '' ||
       countryPopulation === '' ||
       countryImage === ''
     ) {
@@ -49,11 +55,17 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
         newCountry: {
           id: (countriesList.length + 1).toString(),
           likes: 0,
-          active: true,
-          name: countryName,
-          capital: countryCapital,
           population: +countryPopulation,
-          image: countryImage,
+          active: true,
+          image: typeof countryImage === 'string' ? countryImage : '',
+          name: {
+            ka: countryNameKa,
+            eng: countryNameEng,
+          },
+          capital: {
+            ka: countryCapitalKa,
+            eng: countryCapitalEng,
+          },
         },
       },
     });
@@ -65,15 +77,27 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
     <form className={styles.country_form} onSubmit={handleCreateCountry}>
       <CountryCreateInput
         name="name"
-        placeholder={countyCreatePlaceholders.countryName}
-        value={countryName}
-        setValue={setCountryName}
+        placeholder="ქვეყანა"
+        value={countryNameKa}
+        setValue={setCountryNameKa}
+      />
+      <CountryCreateInput
+        name="name"
+        placeholder="Country"
+        value={countryNameEng}
+        setValue={setCountryNameEng}
       />
       <CountryCreateInput
         name="capital"
-        placeholder={countyCreatePlaceholders.countryCapital}
-        value={countryCapital}
-        setValue={setCountryCapital}
+        placeholder="დედაქალაქი"
+        value={countryCapitalKa}
+        setValue={setCountryCapitalKa}
+      />
+      <CountryCreateInput
+        name="capital"
+        placeholder="Capital"
+        value={countryCapitalEng}
+        setValue={setCountryCapitalEng}
       />
       <CountryCreateInput
         name="population"
@@ -83,9 +107,9 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
       />
       <CountryCreateInput
         name="image"
-        placeholder={countyCreatePlaceholders.countryImg}
-        value={countryImage}
         setValue={setCountryImage}
+        type="file"
+        accept=".png, .jpg"
       />
       <button className={styles.create_btn} type="submit">
         {countryCreateBtn}

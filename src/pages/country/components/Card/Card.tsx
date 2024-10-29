@@ -1,4 +1,4 @@
-import { CountryType } from '@/pages/country/views/list/reducer/state';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 import styles from './card.module.css';
 import { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';

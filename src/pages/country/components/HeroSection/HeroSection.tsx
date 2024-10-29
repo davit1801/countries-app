@@ -7,6 +7,7 @@ const HeroSection = () => {
   const { lang } = useParams<ParamsType>();
   const { heroHeading } = CONTENT[lang ?? 'ka'];
 
+
   return (
     <section className={styles.hero_section}>
       <img src={heroImg} className={styles.hero_img} alt="" />

@@ -1,8 +1,8 @@
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { CountryType } from '@/pages/country/views/list/reducer/state';
 import React, { Dispatch } from 'react';
 import styles from './CountryDelateBtn.module.css';
 import { MdDelete, MdRestore } from 'react-icons/md';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
 interface ComponentProps {
   country: CountryType;

@@ -1,7 +1,7 @@
-import { CountryType } from '@/pages/country/views/list/reducer/state';
-import CONTENT, { ParamsType } from '@/static/siteContent';
-import styles from './CountryDetails.module.css';
 import { useParams } from 'react-router-dom';
+import styles from './CountryDetails.module.css';
+import CONTENT, { ParamsType } from '@/static/siteContent';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
 interface CountryDetailsProps {
   info: CountryType;
@@ -17,9 +17,9 @@ const CountryDetails: React.FC<CountryDetailsProps> = ({ info }) => {
         <img src={info.image} alt="Country flag" />
       </div>
       <div className={styles.country_description}>
-        <h3>{info.name}</h3>
+        <h3>{info.name[lang ?? 'ka']}</h3>
         <p>
-          {detailCountryTitles.capital}: {info.capital}
+          {detailCountryTitles.capital}: {info.capital[lang ?? 'ka']}
         </p>
         <p>
           {detailCountryTitles.population}: {info.population / 1000000}{' '}

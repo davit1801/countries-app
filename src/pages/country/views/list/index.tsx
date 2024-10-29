@@ -5,11 +5,11 @@ import CountrySection from '@/pages/country/components/CountrySection/CountrySec
 import Card from '@/pages/country/components/Card/Card';
 import CardInfo from '@/pages/country/components/Card/CardInfo/CardInfo';
 import LikeButton from '@/components/Buttons/LikeButton/LikeButton';
-import SortSelect from '@/pages/country/components/SortSelect/SortSelect';
-import { CountryType } from '@/pages/country/views/list/reducer/state';
+import SortSelect from '@/pages/country/components/Form/SortSelect/SortSelect';
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import CountryCreateForm from '@/pages/country/components/CountryCreateForm/CountryCreateForm';
+import CountryCreateForm from '@/pages/country/components/Form/CountryCreateForm/CountryCreateForm';
 import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
 interface ComponentProps {
   countriesList: CountryType[];
@@ -25,7 +25,10 @@ const CountryListView: React.FC<ComponentProps> = ({
       <HeroSection />
       <CountrySection>
         <SortSelect dispatch={dispatch} />
-        <CountryCreateForm dispatch={dispatch} countriesList={countriesList} />
+        <CountryCreateForm
+            dispatch={dispatch}
+            countriesList={countriesList}
+          />
         <ul className={styles.countries}>
           {countriesList.map((country: CountryType) => {
             return (

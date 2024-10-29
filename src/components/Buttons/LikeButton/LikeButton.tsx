@@ -1,8 +1,8 @@
 import React, { Dispatch } from 'react';
 import icon from '@/assets/images/like-btn.svg';
 import styles from './LikeButton.module.css';
-import { CountryType } from '@/pages/country/views/list/reducer/state';
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
+import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
 interface ComponentProps {
   country: CountryType;
