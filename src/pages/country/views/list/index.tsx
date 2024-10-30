@@ -10,6 +10,7 @@ import { countriesReducerAction } from '@/pages/country/views/list/reducer/reduc
 import CountryCreateForm from '@/pages/country/components/Form/CountryCreateForm/CountryCreateForm';
 import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
+import OTPInputs from '@/pages/country/components/OTPInputs/OTPInputs';
 
 interface ComponentProps {
   countriesList: CountryType[];
@@ -40,6 +41,7 @@ const CountryListView: React.FC<ComponentProps> = ({
           })}
         </ul>
       </CountrySection>
+      <OTPInputs inputQnty={4} />
     </>
   );
 };

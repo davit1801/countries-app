@@ -1,0 +1,15 @@
+.inputs_container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.inputs_container input {
+  background-color: rgba(112, 109, 109, 0.31);
+  width: 10rem;
+  height: 7rem;
+  padding: 2rem;
+  font-size: 3rem;
+  text-align: center;
+}
