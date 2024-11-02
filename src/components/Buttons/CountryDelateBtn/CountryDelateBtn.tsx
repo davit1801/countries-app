@@ -29,7 +29,7 @@ const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
       console.error('Error updating likes:', error);
     }
   };
-  
+
   return (
     <button className={styles.delete_btn} onClick={handleDeleteCard}>
       <MdDelete />
