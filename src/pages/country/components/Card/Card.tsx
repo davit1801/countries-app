@@ -13,13 +13,7 @@ const Card: React.FC<PropsWithChildren<cardProps>> = ({
 }) => {
   return (
     <Link to={`country/${country.id}`}>
-      <article
-        className={
-          country.active
-            ? styles.country_card_active
-            : styles.country_card_inactive
-        }
-      >
+      <article className={styles.country_card}>
         <img
           className={styles.country_img}
           src={country.image}

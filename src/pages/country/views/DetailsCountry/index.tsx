@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CountryDetails from '@/pages/country/components/DetailsCountry/CountryDetails';
 import { ParamsType } from '@/static/siteContent';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
+import axios from 'axios';
 
-type PropsType = {
-  countriesList: CountryType[];
-};
-
-const DetailsCountry: React.FC<PropsType> = ({ countriesList }) => {
+const DetailsCountry: React.FC = () => {
+  const [countryInfo, setCountryInfo] = useState<CountryType | null>(null);
   const { id } = useParams<ParamsType>();
-  // const [countryData] = useState(countriesInitialState);
 
-  const countryInfo = countriesList.find((country) => country.id === id);
+  useEffect(() => {
+    const getData = async (id: string | undefined) => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/countries/${id}`,
+        );
+        setCountryInfo(data);
+      } catch (error) {
+        console.error('Error fetching country data:', error);
+      }
+    };
+
+    getData(id);
+  }, [id]);
 
   return countryInfo ? (
     <CountryDetails info={countryInfo} />

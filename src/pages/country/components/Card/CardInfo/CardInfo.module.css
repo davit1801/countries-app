@@ -3,3 +3,11 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+.country_name {
+  width: 20rem;
+}
+
+.country_city{
+  width: 20rem;
+}

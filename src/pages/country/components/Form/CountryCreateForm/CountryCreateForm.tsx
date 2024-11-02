@@ -5,6 +5,7 @@ import CountryCreateInput from '@/pages/country/components/Form/CountryCreateInp
 import { useParams } from 'react-router-dom';
 import CONTENT, { ParamsType } from '@/static/siteContent';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
+import axios from 'axios';
 
 interface CountryCreateForm {
   countriesList: CountryType[];
@@ -35,7 +36,7 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
     setCountryImage('');
   };
 
-  const handleCreateCountry = (e: FormEvent<HTMLFormElement>) => {
+  const handleCreateCountry = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       countryNameEng === '' ||
@@ -49,26 +50,34 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
       return;
     } else setErrMessage('');
 
+    const newCountry = {
+      id: (+countriesList[countriesList.length - 1].id + 1).toString(),
+      likes: 0,
+      population: +countryPopulation,
+      active: true,
+      image: typeof countryImage === 'string' ? countryImage : '',
+      name: {
+        ka: countryNameKa,
+        eng: countryNameEng,
+      },
+      capital: {
+        ka: countryCapitalKa,
+        eng: countryCapitalEng,
+      },
+    };
+
     dispatch({
       type: 'createCountry',
       payload: {
-        newCountry: {
-          id: (countriesList.length + 1).toString(),
-          likes: 0,
-          population: +countryPopulation,
-          active: true,
-          image: typeof countryImage === 'string' ? countryImage : '',
-          name: {
-            ka: countryNameKa,
-            eng: countryNameEng,
-          },
-          capital: {
-            ka: countryCapitalKa,
-            eng: countryCapitalEng,
-          },
-        },
+        newCountry,
       },
     });
+
+    try {
+      axios.post('http://localhost:3000/countries', newCountry);
+    } catch (error) {
+      console.error('Error creating country:', error);
+    }
 
     resetCountryForm();
   };

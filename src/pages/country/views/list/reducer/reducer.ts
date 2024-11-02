@@ -4,7 +4,8 @@ export type countriesReducerAction =
   | { type: 'sort'; payload: { sortType: string } }
   | { type: 'like'; payload: { id: string } }
   | { type: 'createCountry'; payload: { newCountry: CountryType } }
-  | { type: 'delete'; payload: { id: string } };
+  | { type: 'delete'; payload: { id: string } }
+  | { type: 'setCountries'; payload: { countriesData: CountryType[] } };
 
 export const countriesReducer = (
   countryList: CountryType[],
@@ -34,12 +35,12 @@ export const countriesReducer = (
       return [...countryList, action.payload.newCountry];
     }
 
+    case 'setCountries': {
+      return action.payload.countriesData;
+    }
+
     case 'delete': {
-      return countryList.map((country) =>
-        country.id === action.payload.id
-          ? { ...country, active: !country.active }
-          : country,
-      );
+      return countryList.filter((country) => country.id !== action.payload.id);
     }
   }
 };

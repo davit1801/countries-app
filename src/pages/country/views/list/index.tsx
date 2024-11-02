@@ -21,6 +21,7 @@ const CountryListView: React.FC<ComponentProps> = ({
   countriesList,
   dispatch,
 }) => {
+
   return (
     <>
       <HeroSection />

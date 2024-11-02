@@ -1,8 +1,9 @@
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 import React, { Dispatch } from 'react';
 import styles from './CountryDelateBtn.module.css';
-import { MdDelete, MdRestore } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
+import axios from 'axios';
 
 interface ComponentProps {
   country: CountryType;
@@ -10,7 +11,9 @@ interface ComponentProps {
 }
 
 const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
-  const handleDeleteCard: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleDeleteCard: React.MouseEventHandler<HTMLButtonElement> = async (
+    e,
+  ) => {
     e.preventDefault();
     dispatch({
       type: 'delete',
@@ -18,19 +21,18 @@ const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
         id: country.id,
       },
     });
+
+    try {
+      await axios.delete(`http://localhost:3000/countries/${country.id}`);
+      console.log(`Country with ID ${country.id} deleted successfully.`);
+    } catch (error) {
+      console.error('Error updating likes:', error);
+    }
   };
+  
   return (
-    // <button
-    //   className={country.active ? styles.delete_btn : styles.recovery_btn}
-    //   onClick={handleDeleteCard}
-    // >
-    //   {country.active ? <MdDelete /> : 'Recovery Card'}
-    // </button>
-    <button
-      className={country.active ? styles.delete_btn : styles.recovery_btn}
-      onClick={handleDeleteCard}
-    >
-      {country.active ? <MdDelete /> : <MdRestore />}
+    <button className={styles.delete_btn} onClick={handleDeleteCard}>
+      <MdDelete />
     </button>
   );
 };

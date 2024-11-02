@@ -1,6 +1,7 @@
 .like_btn {
   padding: 0.8rem 1.6rem;
   display: flex;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   gap: 3rem;

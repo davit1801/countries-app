@@ -18,6 +18,22 @@ export const countriesInitialState: CountryType[] = [
   {
     id: '1',
     likes: 0,
+    population: 3_500_000,
+    active: true,
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Georgia.svg/800px-Flag_of_Georgia.svg.png',
+    name: {
+      ka: 'საქართველო',
+      eng: 'Georgia',
+    },
+    capital: {
+      ka: 'თბილისი',
+      eng: 'Tbilisi',
+    },
+  },
+  {
+    id: '2',
+    likes: 0,
     population: 47_000_000,
     active: true,
     image:
@@ -32,7 +48,7 @@ export const countriesInitialState: CountryType[] = [
     },
   },
   {
-    id: '2',
+    id: '3',
     likes: 0,
     population: 59_000_000,
     active: true,
@@ -45,22 +61,6 @@ export const countriesInitialState: CountryType[] = [
     capital: {
       ka: 'რომი  ',
       eng: 'Rome',
-    },
-  },
-  {
-    id: '3',
-    likes: 0,
-    population: 84_000_000,
-    active: true,
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/2560px-Flag_of_Germany.svg.png',
-    name: {
-      ka: 'გერმანია',
-      eng: 'Germany',
-    },
-    capital: {
-      ka: 'ბერლინი',
-      eng: 'Berlin',
     },
   },
 ];
