@@ -17,6 +17,7 @@ interface SiteContent {
     decrease: string;
   };
   countryCreateBtn: string;
+  countryEditBtn: string;
   countyCreatePlaceholders: {
     countryName: string;
     countryCapital: string;
@@ -60,6 +61,7 @@ const CONTENT: ContentMap = {
       decrease: 'Encreases by likes',
     },
     countryCreateBtn: 'Create Country',
+    countryEditBtn: 'Edit Country',
     countyCreatePlaceholders: {
       countryName: 'Country Name',
       countryCapital: 'Country Capital',
@@ -96,6 +98,7 @@ const CONTENT: ContentMap = {
       decrease: 'მოწონებების კლებადობით',
     },
     countryCreateBtn: 'ქვეყნის შექმნა',
+    countryEditBtn: 'ქვეყნის რედაქტირება',
     countyCreatePlaceholders: {
       countryName: 'ქვეყნის დასახელება',
       countryCapital: 'ქვეყნის დედაქალაქი',

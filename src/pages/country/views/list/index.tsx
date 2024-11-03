@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, useState } from 'react';
 import styles from './index.module.css';
 import HeroSection from '@/pages/country/components/HeroSection/HeroSection';
 import CountrySection from '@/pages/country/components/CountrySection/CountrySection';
@@ -11,6 +11,7 @@ import CountryCreateForm from '@/pages/country/components/Form/CountryCreateForm
 import CountryDelateBtn from '@/components/Buttons/CountryDelateBtn/CountryDelateBtn';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 import OTPInputs from '@/pages/country/components/OTPInputs/OTPInputs';
+import CountryEditBtn from '@/components/Buttons/CountryEditBtn/CountryEditBtn';
 
 interface ComponentProps {
   countriesList: CountryType[];
@@ -21,20 +22,35 @@ const CountryListView: React.FC<ComponentProps> = ({
   countriesList,
   dispatch,
 }) => {
+  const [editingCountry, setEditingCountry] = useState<CountryType | null>(
+    null,
+  );
+
   return (
     <>
       <HeroSection />
       <CountrySection>
         <SortSelect dispatch={dispatch} />
-        <CountryCreateForm dispatch={dispatch} countriesList={countriesList} />
+        <CountryCreateForm
+          dispatch={dispatch}
+          countriesList={countriesList}
+          editingCountry={editingCountry}
+          setEditingCountry={setEditingCountry}
+        />
         <ul className={styles.countries}>
           {countriesList.map((country: CountryType) => {
             return (
               <li key={country.id}>
-                <Card country={country}>
+                <Card country={country} editingCountry={editingCountry}>
                   <CardInfo country={country} />
                   <LikeButton country={country} dispatch={dispatch} />
-                  <CountryDelateBtn country={country} dispatch={dispatch} />
+                  <div className={styles.countries_btns}>
+                    <CountryEditBtn
+                      country={country}
+                      setEditingCountry={setEditingCountry}
+                    />
+                    <CountryDelateBtn country={country} dispatch={dispatch} />
+                  </div>
                 </Card>
               </li>
             );

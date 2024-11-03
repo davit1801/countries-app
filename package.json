@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "format": "prettier . --write",
     "prepare": "husky",
+    "db": "npx json-server database.json",
     "seed-db": "node fetchData.js"
   },
   "dependencies": {

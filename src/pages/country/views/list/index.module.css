@@ -4,4 +4,12 @@
   gap: 3rem;
   flex-wrap: wrap;
   max-width: 110rem;
+  margin: 2rem 0;
+}
+
+.countries_btns {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

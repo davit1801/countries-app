@@ -5,23 +5,31 @@ import { Link } from 'react-router-dom';
 
 interface cardProps {
   country: CountryType;
+  editingCountry?: CountryType | null;
 }
 
 const Card: React.FC<PropsWithChildren<cardProps>> = ({
   country,
   children,
+  editingCountry,
 }) => {
   return (
-    <Link to={`country/${country.id}`}>
-      <article className={styles.country_card}>
+    <article
+      className={
+        editingCountry?.id === country.id
+          ? styles.editing_country
+          : styles.country_card
+      }
+    >
+      <Link to={`country/${country.id}`}>
         <img
           className={styles.country_img}
           src={country.image}
           alt={`${country.name}'s flag`}
         />
-        {children}
-      </article>
-    </Link>
+      </Link>
+      {children}
+    </article>
   );
 };
 

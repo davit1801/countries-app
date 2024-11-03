@@ -1,6 +1,5 @@
 .country_card {
-  margin: 2rem 0;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -9,7 +8,20 @@
   border-radius: 1.5rem;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  color: black;
+  height: 40rem;
+}
+
+.editing_country{
+  padding: 2rem 2rem 0 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.8rem;
+  border-radius: 1.5rem;
+  background-color: #5d5a5a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   color: black;
   height: 40rem;
 }

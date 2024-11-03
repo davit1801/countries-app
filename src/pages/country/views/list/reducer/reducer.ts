@@ -5,6 +5,7 @@ export type countriesReducerAction =
   | { type: 'like'; payload: { id: string } }
   | { type: 'createCountry'; payload: { newCountry: CountryType } }
   | { type: 'delete'; payload: { id: string } }
+  | { type: 'updateCountry'; payload: { updatedCountry: CountryType } }
   | { type: 'setCountries'; payload: { countriesData: CountryType[] } };
 
 export const countriesReducer = (
@@ -14,9 +15,6 @@ export const countriesReducer = (
   switch (action.type) {
     case 'sort': {
       return [...countryList].sort((a, b) => {
-        if (a.active !== b.active) {
-          return a.active ? -1 : 1;
-        }
         return action.payload.sortType === 'decrease'
           ? b.likes - a.likes
           : a.likes - b.likes;
@@ -37,6 +35,14 @@ export const countriesReducer = (
 
     case 'setCountries': {
       return action.payload.countriesData;
+    }
+
+    case 'updateCountry': {
+      return countryList.map((country) =>
+        country.id === action.payload.updatedCountry.id
+          ? action.payload.updatedCountry
+          : country,
+      );
     }
 
     case 'delete': {
