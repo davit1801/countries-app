@@ -16,9 +16,10 @@ const CountryEditBtn: React.FC<ComponentProps> = ({
     e,
   ) => {
     e.preventDefault();
-    setEditingCountry((prevValue) => (prevValue === null ? country : null));
+    setEditingCountry((prevEditCountry) =>
+      prevEditCountry?.id === country.id ? null : country,
+    );
   };
-
   return (
     <button className={styles.edit_btn} onClick={handleCountryEdit}>
       <FaEdit />

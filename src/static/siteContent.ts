@@ -124,17 +124,4 @@ const CONTENT: ContentMap = {
 
 export default CONTENT;
 
-export const langs = Object.keys(CONTENT);
 export const defaultLang = 'ka';
-
-export function getTranslation(lang?: string) {
-  if (!lang || !langs.includes(lang)) {
-    throw new Error('unknown locale');
-  }
-
-  const selectedContent = CONTENT[lang as keyof typeof CONTENT];
-
-  return (key: keyof (typeof CONTENT)['ka']) => {
-    return selectedContent[key];
-  };
-}
