@@ -5,7 +5,8 @@ import CountryCreateInput from '@/pages/country/components/Form/CountryCreateInp
 import { useParams } from 'react-router-dom';
 import CONTENT, { ParamsType } from '@/static/siteContent';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
-import axios from 'axios';
+import { addNewCountry, updateCountry } from '@/api/countries';
+import { useMutation } from '@tanstack/react-query';
 
 interface CountryCreateForm {
   countriesList: CountryType[];
@@ -31,6 +32,14 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
   const [countryCapitalKa, setCountryCapitalKa] = useState<string>('');
   const [countryPopulation, setCountryPopulation] = useState<string>('');
   const [countryImage, setCountryImage] = useState<string>('');
+
+  const { mutate: addCountry, isPending: pendingAdding } = useMutation({
+    mutationFn: addNewCountry,
+  });
+
+  const { mutate: mutateCountry, isPending: pendingEditing } = useMutation({
+    mutationFn: updateCountry,
+  });
 
   useEffect(() => {
     if (editingCountry) {
@@ -68,7 +77,7 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
       return;
     } else setErrMessage('');
 
-    const updatedCountry: CountryType = {
+    const country: CountryType = {
       id: editingCountry
         ? editingCountry.id
         : (+countriesList[countriesList.length - 1].id + 1).toString(),
@@ -90,31 +99,23 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
       dispatch({
         type: 'updateCountry',
         payload: {
-          updatedCountry,
+          country,
         },
       });
-      try {
-        await axios.put(
-          `http://localhost:3000/countries/${editingCountry.id}`,
-          updatedCountry,
-        );
-      } catch (error) {
-        console.error('Error updating country:', error);
-      }
+      // updateCountry(country, editingCountry.id);
+      mutateCountry({ id: editingCountry.id, payload: country });
+
       setEditingCountry(null);
     } else {
       // Create new country
       dispatch({
         type: 'createCountry',
         payload: {
-          newCountry: updatedCountry,
+          newCountry: country,
         },
       });
-      try {
-        await axios.post('http://localhost:3000/countries', updatedCountry);
-      } catch (error) {
-        console.error('Error creating country:', error);
-      }
+      // addNewCountry(country);
+      addCountry(country);
     }
 
     resetCountryForm();
@@ -169,7 +170,11 @@ const CountryCreateForm: React.FC<CountryCreateForm> = ({
         setValue={setCountryPopulation}
       />
 
-      <button className={styles.create_btn} type="submit">
+      <button
+        className={styles.create_btn}
+        type="submit"
+        disabled={pendingAdding || pendingEditing}
+      >
         {editingCountry ? countryEditBtn : countryCreateBtn}
       </button>
       <span className={styles.errorMsg}>{errMessage}</span>

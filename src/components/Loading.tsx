@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loading: React.FC = () => {
   return (
-    <div>
+    <div style={{ textAlign: 'center', fontSize: '4rem' }}>
       <h1>Loading ...</h1>
     </div>
   );

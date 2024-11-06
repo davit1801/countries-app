@@ -3,7 +3,8 @@ import React, { Dispatch } from 'react';
 import styles from './CountryDelateBtn.module.css';
 import { MdDelete } from 'react-icons/md';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
-import axios from 'axios';
+import { deleteCountry } from '@/api/countries';
+import { useMutation } from '@tanstack/react-query';
 
 interface ComponentProps {
   country: CountryType;
@@ -11,6 +12,7 @@ interface ComponentProps {
 }
 
 const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
+  const { mutate } = useMutation({ mutationFn: deleteCountry });
   const handleDeleteCard: React.MouseEventHandler<HTMLButtonElement> = async (
     e,
   ) => {
@@ -22,12 +24,7 @@ const CountryDelateBtn: React.FC<ComponentProps> = ({ country, dispatch }) => {
       },
     });
 
-    try {
-      await axios.delete(`http://localhost:3000/countries/${country.id}`);
-      console.log(`Country with ID ${country.id} deleted successfully.`);
-    } catch (error) {
-      console.error('Error updating likes:', error);
-    }
+    mutate(country.id);
   };
 
   return (

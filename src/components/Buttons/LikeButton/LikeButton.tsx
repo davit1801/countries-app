@@ -3,7 +3,8 @@ import icon from '@/assets/images/like-btn.svg';
 import styles from './LikeButton.module.css';
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
-import axios from 'axios';
+import { encreaseLikes } from '@/api/countries';
+import { useMutation } from '@tanstack/react-query';
 
 interface ComponentProps {
   country: CountryType;
@@ -11,6 +12,10 @@ interface ComponentProps {
 }
 
 const LikeButton: React.FC<ComponentProps> = ({ country, dispatch }) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: encreaseLikes,
+  });
+
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     dispatch({
@@ -20,21 +25,14 @@ const LikeButton: React.FC<ComponentProps> = ({ country, dispatch }) => {
       },
     });
 
-    try {
-      await axios.put(`http://localhost:3000/countries/${country.id}`, {
-        ...country,
-        likes: country.likes + 1,
-      });
-    } catch (error) {
-      console.error('Error updating likes:', error);
-    }
+    mutate({ id: country.id, payload: { likes: country.likes + 1 } });
   };
 
   return (
     <button
       className={styles.like_btn}
       onClick={handleClick}
-      // disabled={!country.active}
+      disabled={isPending}
     >
       <img src={icon} alt="like icon" />
       <span className={styles.btn_text}>Like</span>

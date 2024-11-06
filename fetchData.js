@@ -1,6 +1,21 @@
 import axios from 'axios';
 
+const clearDatabase = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/countries');
+    const countries = response.data;
+
+    for (const country of countries) {
+      await axios.delete(`http://localhost:3000/countries/${country.id}`);
+    }
+  } catch (error) {
+    console.error('Failed to clear database:', error.message || error);
+  }
+};
+
 const fetchData = async () => {
+  await clearDatabase();
+
   const response = await axios.get('https://restcountries.com/v3.1/all');
   const data = response.data;
 
@@ -9,7 +24,7 @@ const fetchData = async () => {
       country.capital?.length > 0 ? country.capital[0] : 'Not have Capital';
 
     return {
-      id: (3 + (index + 1)).toString(),
+      id: (index + 1).toString(),
       likes: 0,
       population: country.population,
       image: country.flags.png,
@@ -34,10 +49,6 @@ const fetchData = async () => {
             'Content-Type': 'application/json',
           },
         },
-      );
-      console.log(
-        `Country ${country.name.eng} added successfully`,
-        response.data,
       );
     } catch (error) {
       console.error('Failed to add country:', error.message || error);

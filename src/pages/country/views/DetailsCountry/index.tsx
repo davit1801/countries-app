@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import CountryDetails from '@/pages/country/components/DetailsCountry/CountryDetails';
-import { ParamsType } from '@/static/siteContent';
+import { getOneCountry } from '@/api/countries';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '@/components/Loading';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
-import axios from 'axios';
 
 const DetailsCountry: React.FC = () => {
-  const [countryInfo, setCountryInfo] = useState<CountryType | null>(null);
-  const { id } = useParams<ParamsType>();
+  const { id } = useParams<{ id: string }>();
 
-  useEffect(() => {
-    const getData = async (id: string | undefined) => {
-      try {
-        const { data } = await axios.get(
-          `http://localhost:3000/countries/${id}`,
-        );
-        setCountryInfo(data);
-      } catch (error) {
-        console.error('Error fetching country data:', error);
-      }
-    };
+  const {
+    data: countryInfo,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['getOneCountry', id],
+    queryFn: () => getOneCountry(id as string),
+  });
+  console.log(countryInfo);
 
-    getData(id);
-  }, [id]);
+  if (isError)
+    return (
+      <h1 style={{ textAlign: 'center', fontSize: '2.4rem' }}>
+        Country Not Found!!!
+      </h1>
+    );
 
-  return countryInfo ? (
-    <CountryDetails info={countryInfo} />
+  return isLoading ? (
+    <Loading />
   ) : (
-    <h1 style={{ textAlign: 'center', fontSize: '2.4rem' }}>
-      Country Not Found!!!
-    </h1>
+    <CountryDetails info={countryInfo as CountryType} />
   );
 };
 
