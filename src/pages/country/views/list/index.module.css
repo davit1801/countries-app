@@ -20,7 +20,6 @@
   font-size: 3rem;
 }
 
-
 .countries_list {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
