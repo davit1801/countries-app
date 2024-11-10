@@ -1,23 +1,38 @@
-import React, { Dispatch } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './SortSelect.module.css';
-import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import CONTENT, { ParamsType } from '@/static/siteContent';
+import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
+import { useQuery } from '@tanstack/react-query';
+import { sortCountries } from '@/api/countries';
 
 type PropsType = {
-  dispatch: Dispatch<countriesReducerAction>;
+  dispatch: React.Dispatch<countriesReducerAction>;
 };
 
 const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
   const { lang } = useParams<ParamsType>();
   const { countrySort } = CONTENT[lang ?? 'ka'];
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const initialSort = searchParams.get('_sort') || '';
+  const [selectedSort, setSelectedSort] = useState(initialSort);
+
+  const { data } = useQuery({
+    queryKey: ['sorted-list', selectedSort],
+    queryFn: () => sortCountries(selectedSort),
+  });
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'sortedData', payload: { sortedCountries: data } });
+    }
+  }, [data, dispatch]);
+
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch({
-      type: 'sort',
-      payload: {
-        sortType: e.target.value,
-      },
-    });
+    const sortValue = e.target.value;
+    setSelectedSort(sortValue);
+    setSearchParams({ _sort: sortValue });
   };
 
   return (

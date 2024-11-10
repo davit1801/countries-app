@@ -13,11 +13,12 @@ const DetailsCountry: React.FC = () => {
     data: countryInfo,
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ['getOneCountry', id],
+  } = useQuery<CountryType | undefined>({
+    queryKey: ['single-country', id],
     queryFn: () => getOneCountry(id as string),
+    gcTime: 1000 * 60,
+    staleTime: 1000 * 60,
   });
-  console.log(countryInfo);
 
   if (isError)
     return (

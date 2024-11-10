@@ -1,7 +1,7 @@
 import { httpClient } from '@/api';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
-export const getCountries = async (): Promise<CountryType[] | undefined> => {
+export const getCountries = async () => {
   try {
     const { data } = await httpClient.get<CountryType[]>('countries');
 
@@ -11,9 +11,7 @@ export const getCountries = async (): Promise<CountryType[] | undefined> => {
   }
 };
 
-export const getOneCountry = async (
-  id: string,
-): Promise<CountryType | undefined> => {
+export const getOneCountry = async (id: string) => {
   try {
     const { data } = await httpClient.get<CountryType>(`countries/${id}`);
 
@@ -23,11 +21,12 @@ export const getOneCountry = async (
   }
 };
 
-export const addNewCountry = async (
-  country: CountryType,
-): Promise<CountryType | undefined> => {
+export const addNewCountry = async (country: CountryType) => {
   try {
-    const { data } = await httpClient.post('/countries', country);
+    const { data } = await httpClient.post<CountryType[]>(
+      '/countries',
+      country,
+    );
     return data;
   } catch (error) {
     console.error('Error creating country:', error);
@@ -40,9 +39,12 @@ export const updateCountry = async ({
 }: {
   id: string;
   payload: CountryType;
-}): Promise<CountryType | undefined> => {
+}) => {
   try {
-    const { data } = await httpClient.put(`/countries/${id}`, payload);
+    const { data } = await httpClient.put<CountryType>(
+      `/countries/${id}`,
+      payload,
+    );
 
     return data;
   } catch (error) {
@@ -56,9 +58,12 @@ export const encreaseLikes = async ({
 }: {
   id: string;
   payload: { likes: number };
-}): Promise<CountryType | undefined> => {
+}) => {
   try {
-    const { data } = await httpClient.patch(`countries/${id}`, payload);
+    const { data } = await httpClient.patch<CountryType>(
+      `countries/${id}`,
+      payload,
+    );
 
     return data;
   } catch (error) {
@@ -66,14 +71,27 @@ export const encreaseLikes = async ({
   }
 };
 
-export const deleteCountry = async (
-  id: string,
-): Promise<CountryType | undefined> => {
+export const deleteCountry = async (id: string) => {
   try {
-    const { data } = await httpClient.delete(`/countries/${id}`);
+    const { data } = await httpClient.delete<CountryType>(`/countries/${id}`);
 
     return data;
   } catch (error) {
     console.error('Error deleting country:', error);
+  }
+};
+
+export const sortCountries = async (sortOrder: string) => {
+  try {
+    console.log(sortOrder);
+    const sortParam = sortOrder === 'decrease' ? '-likes' : 'likes';
+
+    const { data } = await httpClient.get<CountryType[]>(
+      `/countries?_sort=${sortParam}`,
+    );
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching sorted countries:', error);
   }
 };

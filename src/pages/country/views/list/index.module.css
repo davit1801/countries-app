@@ -1,6 +1,7 @@
 .countries {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 3rem;
   flex-wrap: wrap;
   max-width: 110rem;
@@ -17,4 +18,12 @@
 .error {
   color: red;
   font-size: 3rem;
+}
+
+
+.countries_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 16px; /* space between columns */
+  width: 100%;
 }
