@@ -2,7 +2,7 @@
   "countries": [
     {
       "id": "1",
-      "likes": 0,
+      "likes": 3,
       "population": 30,
       "image": "https://flagcdn.com/w320/gs.png",
       "name": {
