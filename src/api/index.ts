@@ -5,4 +5,3 @@ const axiosConfig: CreateAxiosDefaults = {
 };
 
 export const httpClient = axios.create(axiosConfig);
-
