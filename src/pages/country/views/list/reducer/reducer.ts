@@ -20,8 +20,7 @@ export const countriesReducer = (
 ) => {
   switch (action.type) {
     case 'sortedData': {
-      // console.log(action.payload.sortedCountries);
-      return action.payload.sortedCountries;
+      return [...action.payload.sortedCountries];
     }
 
     case 'like': {
@@ -37,7 +36,7 @@ export const countriesReducer = (
     }
 
     case 'setCountries': {
-      return action.payload.countriesData;
+      return [...action.payload.countriesData];
     }
 
     case 'updateCountry': {

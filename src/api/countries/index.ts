@@ -1,13 +1,33 @@
 import { httpClient } from '@/api';
 import { CountryType } from '@/pages/country/views/list/reducer/CountriesState';
 
-export const getCountries = async () => {
-  try {
-    const { data } = await httpClient.get<CountryType[]>('countries');
+const errorMessage = 'Oops! Something went wrong. Please try again later.';
 
-    return data;
+function getNextPageNumber(relType: string, pagination: string) {
+  const regex = new RegExp(`<[^>]*[?&]_page=(\\d+)[^>]*>; rel="${relType}"`);
+  const match = pagination.match(regex);
+  return match ? parseInt(match[1], 10) : null;
+}
+
+export const getCountries = async ({
+  page,
+  limit,
+}: {
+  page: number;
+  limit: number;
+}) => {
+  try {
+    const res = await httpClient.get<CountryType[]>(
+      `/countries?_page=${page}&_limit=${limit}`,
+    );
+
+    return {
+      rows: res.data,
+      nextOffset: getNextPageNumber('next', res.headers.link),
+    };
   } catch (error) {
     console.log('Error fetching countries', error);
+    throw errorMessage;
   }
 };
 

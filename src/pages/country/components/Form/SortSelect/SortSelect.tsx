@@ -3,7 +3,7 @@ import styles from './SortSelect.module.css';
 import { useParams, useSearchParams } from 'react-router-dom';
 import CONTENT, { ParamsType } from '@/static/siteContent';
 import { countriesReducerAction } from '@/pages/country/views/list/reducer/reducer';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { sortCountries } from '@/api/countries';
 
 type PropsType = {
@@ -14,14 +14,18 @@ const SortSelect: React.FC<PropsType> = ({ dispatch }) => {
   const { lang } = useParams<ParamsType>();
   const { countrySort } = CONTENT[lang ?? 'ka'];
   const [searchParams, setSearchParams] = useSearchParams();
-
   const initialSort = searchParams.get('_sort') || '';
   const [selectedSort, setSelectedSort] = useState(initialSort);
 
-  const { data } = useQuery({
-    queryKey: ['sorted-list', selectedSort],
-    queryFn: () => sortCountries(selectedSort),
+  const { mutate, data } = useMutation({
+    mutationFn: sortCountries,
   });
+
+  useEffect(() => {
+    if (selectedSort) {
+      mutate(selectedSort);
+    }
+  }, [selectedSort, mutate]);
 
   useEffect(() => {
     if (data) {
