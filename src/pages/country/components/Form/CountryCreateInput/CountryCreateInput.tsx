@@ -30,7 +30,7 @@ const CountryCreateInput: React.FC<countryCreateInputProps> = ({
         }
       };
 
-      reader.readAsDataURL(file); // Convert the file to base64 string
+      reader.readAsDataURL(file);
     }
   };
 

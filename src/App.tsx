@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/:lang" element={<Layout />}>
+        <Route path=":lang" element={<Layout />}>
           <Route
             path="countries"
             element={
