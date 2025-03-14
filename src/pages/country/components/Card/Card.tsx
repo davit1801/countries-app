@@ -25,7 +25,7 @@ const Card: React.FC<PropsWithChildren<cardProps>> = ({
         <img
           className={styles.country_img}
           src={country.image}
-          alt={`${country.name}'s flag`}
+          alt={`${country.name} flag`}
         />
       </Link>
       {children}
