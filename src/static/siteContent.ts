@@ -95,7 +95,7 @@ const CONTENT: ContentMap = {
     countrySort: {
       title: 'დალაგება',
       increase: 'მოწონებების ზრდადობით',
-      decrease: 'მოწონებების კლებადობით',
+      decrease: 'მოწონებების კლებადობით4324',
     },
     countryCreateBtn: 'ქვეყნის შექმნა',
     countryEditBtn: 'ქვეყნის რედაქტირება',
