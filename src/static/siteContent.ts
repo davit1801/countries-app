@@ -89,7 +89,7 @@ const CONTENT: ContentMap = {
       { name: 'ჩვენს შესახებ', path: 'about' },
       { name: 'დაგვიკავშირდით', path: 'contact' },
     ],
-    heroHeading: 'ჩვენ ვპოულობთ საუკეთესო ტურებს თქვენთვისss',
+    heroHeading: 'ჩვენ ვპოულობთ საუკეთესო ტურებს თქვენთვისsss',
     countriesHeading: 'პოპულარული ქვეყნები',
     copyrightTitle: 'ყველა უფლება დაცულია © 2024',
     countrySort: {
